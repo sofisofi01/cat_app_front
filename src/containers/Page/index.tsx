@@ -3,7 +3,7 @@
 import classNames from 'classnames';
 
 import { Footer } from '@/containers/Footer/index';
-import { Header } from '@/containers/Header';
+import { Header } from '@/containers/Header/index';
 
 import styles from './Page.module.scss';
 import { PageProps } from './types';
