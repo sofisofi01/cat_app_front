@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import '@/styles/styles.scss';
 import { Page } from "@/containers/Page";
 
-const FAVICON_FOLDER = 'public/images/favicon'
+const FAVICON_FOLDER = '/images/favicon'
 
 export const metadata: Metadata = {
   title: "Кот-предсказатель",
