@@ -1,0 +1,50 @@
+@import './variables/fonts.scss';
+
+body,
+html {
+  min-width: 320px;
+
+  font-weight: $font-weight-regular;
+  font-size: $font-size-base;
+  font-family: $font-family, sans-serif;
+  line-height: $line-height-base;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+small,
+.small {
+  color: inherit;
+  font-size: $font-size-small;
+  line-height: $line-height-small;
+}
+
+b,
+strong {
+  font-weight: $font-weight-medium;
+}
+
+*,
+::before,
+::after {
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+}
+
+ul,
+ol {
+  margin: 1em 0;
+}
+
+button {
+  user-select: none;
+}
+
+img {
+  max-width: 100%;
+
+  border: none;
+}

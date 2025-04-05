@@ -1,0 +1,12 @@
+@use 'sass:map';
+@import '../variables/breakpoints.scss';
+
+@mixin breakpoints($name) {
+  $screen: map.get($layout-breakpoints, $name);
+
+  @if $screen {
+    @media (min-width: $screen) {
+      @content;
+    }
+  }
+}

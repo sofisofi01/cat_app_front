@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import '@/styles/styles.scss';
 
 const FAVICON_FOLDER = 'public/images/favicon'
 
