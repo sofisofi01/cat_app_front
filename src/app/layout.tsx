@@ -17,10 +17,9 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const header = { menu:['1','2']}
   return (
     <html lang="ru">  
-    <Page header={header}>{children}</Page>
+    <Page>{children}</Page>
     </html>
   );
 }
