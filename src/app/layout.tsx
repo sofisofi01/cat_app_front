@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import '@/styles/styles.scss';
+import { Page } from "@/containers/Page";
 
 const FAVICON_FOLDER = 'public/images/favicon'
 
@@ -16,11 +17,10 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const header = { menu:['1','2']}
   return (
-    <html lang="en">
-      <body >
-        {children}
-      </body>
+    <html lang="ru">  
+    <Page header={header}>{children}</Page>
     </html>
   );
 }

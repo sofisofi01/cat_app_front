@@ -1,16 +1,17 @@
-@import '@/styles/variables/colors';
+@import '../../styles/variables/colors.scss';
+@import '../../styles/mixins/background.scss';
 
 .body {
+  @include mystic-background;
   display: flex;
   flex-direction: column;
   min-width: 1440px;
   padding-top: 96px;
-
-  color: $color-white;
-
-  background-color: $color-black;
+  color: $color-light-blue;
 }
 
 .main {
   flex: 1;
+  border-radius: 12px;
+  padding: 2rem;
 }
