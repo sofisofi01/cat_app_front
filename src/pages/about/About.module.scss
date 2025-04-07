@@ -8,8 +8,7 @@
   flex-direction: column;
   min-height: 100vh;
   color: $color-light-blue;
-  
-  // Стили для хедера
+
   header {
     font-family: 'Bergamasco', sans-serif;
     background-color: transparent !important;
@@ -31,7 +30,6 @@
     }
   }
 
-  // Стили для футера
   footer {
     font-family: 'Ysabeau SC', sans-serif;
     background-color: transparent !important;
