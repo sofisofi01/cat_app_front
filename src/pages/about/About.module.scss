@@ -1,0 +1,167 @@
+@import '../../styles/variables/colors.scss';
+@import '../../styles/mixins/background.scss';
+@import '../../styles/fonts.scss';
+
+.body {
+  @include mystic-background;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  color: $color-light-blue;
+  
+  // Стили для хедера
+  header {
+    font-family: 'Bergamasco', sans-serif;
+    background-color: transparent !important;
+    
+    a {
+      color: $color-light-blue !important;
+      text-decoration: none;
+      transition: color 0.3s ease;
+      font-size: 1.2rem;
+      
+      &:hover {
+        color: lighten($color-light-blue, 15%) !important;
+      }
+    }
+    
+    .logo {
+      font-size: 1.8rem;
+      font-weight: 700;
+    }
+  }
+
+  // Стили для футера
+  footer {
+    font-family: 'Ysabeau SC', sans-serif;
+    background-color: transparent !important;
+    color: $color-light-blue !important;
+    padding: 2rem 0;
+    
+    a {
+      color: $color-light-blue !important;
+      text-decoration: none;
+      transition: color 0.3s ease;
+      
+      &:hover {
+        color: lighten($color-light-blue, 15%) !important;
+      }
+    }
+    
+    .footerLinks {
+      display: flex;
+      gap: 1.5rem;
+      justify-content: center;
+      margin-bottom: 1rem;
+    }
+    
+    .copyright {
+      text-align: center;
+      font-size: 0.9rem;
+    }
+  }
+}
+
+.main {
+  flex: 1;
+  padding: 2rem;
+  font-family: inherit;
+  position: relative;
+  padding-bottom: 5rem;
+}
+
+.aboutContent {
+  max-width: 1200px;
+  margin: 0 auto;
+  font-family: inherit;
+  height: 90vh;
+  position: relative;
+  
+  .introContainer {
+    position: absolute;
+    right: 5%;
+    top: -10%;
+    width: 110%;
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+  }
+
+  .catGif {
+    width: 700px;
+    height: 700px;
+    object-fit: contain;
+    animation: float 3s ease-in-out infinite;
+    flex-shrink: 0;
+    margin-left: 20px;
+  }
+
+  h1 {
+    font-size: 2.2rem;
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+    font-family: 'Bergamasco', sans-serif;
+    text-align: center;
+    flex: 1;
+    color: $color-light-blue;
+  }
+}
+
+.boxContainer {
+  height: 100%;
+  position: relative;
+}
+
+.contentBox {
+  position: absolute;
+  width: 35%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #30437B;
+  font-family: 'Ysabeau SC', sans-serif;
+  padding-left: 2rem;
+  margin-top: -80px;
+  
+  &::before {
+    content: attr(data-number);
+    position: absolute;
+    font-size: 4rem;
+    font-weight: bold;
+    font-family: 'Bergamasco', sans-serif;
+    color: rgba(48, 67, 123, 0.2);
+    left: -1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: -1;
+  }
+  
+  h2, p {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 1rem;
+    color: #30437B;
+  }
+  
+  &:nth-child(1) {
+    left: 65%;
+    top: 45%;
+  }
+  
+  &:nth-child(2) {
+    left: 5%;
+    top: 60%;
+  }
+  
+  &:nth-child(3) {
+    left: 50%;
+    top: 75%;
+  }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-15px); }
+}
