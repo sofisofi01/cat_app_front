@@ -3,484 +3,132 @@
 @import '../../styles/fonts.scss';
 
 .body {
-  @include mystic-background;
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-  color: $color-light-blue;
+    @include mystic-background;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 
-  header {
-    font-family: 'Bergamasco', sans-serif;
-    background-color: transparent !important;
-    
-    a {
-      color: $color-light-blue !important;
-      text-decoration: none;
-      transition: color 0.3s ease;
-      font-size: 1.2rem;
-      
-      &:hover {
-        color: lighten($color-light-blue, 15%) !important;
-      }
-    }
-    
-    .logo {
-      font-size: 1.8rem;
-      font-weight: 700;
-    }
-  }
+    header {
+        font-family: 'Bergamasco', sans-serif;
+        background-color: transparent !important;
 
-  footer {
-    font-family: 'Ysabeau SC', sans-serif;
-    background-color: transparent !important;
-    color: #30437B;;
-    padding: 2rem 0;
-    
-    a {
-      color: $color-light-blue !important;
-      text-decoration: none;
-      transition: color 0.3s ease;
-      
-      &:hover {
-        color: lighten($color-light-blue, 15%) !important;
-      }
+        a {
+            color: $color-light-blue  !important;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-size: 1.2rem;
+
+            &:hover {
+                color: lighten($color-light-blue, 15%) !important;
+            }
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
     }
-    
-    .footerLinks {
-      display: flex;
-      gap: 1.5rem;
-      justify-content: center;
-      margin-bottom: 1rem;
+
+    footer {
+        font-family: 'Ysabeau SC', sans-serif;
+        background-color: transparent !important;
+        color: #30437B;
+        ;
+        padding: 2rem 0;
+
+        a {
+            color: $color-light-blue  !important;
+            text-decoration: none;
+            transition: color 0.3s ease;
+
+            &:hover {
+                color: lighten($color-light-blue, 15%) !important;
+            }
+        }
+
+        .footerLinks {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            margin-bottom: 1rem;
+        }
+
+        .copyright {
+            text-align: center;
+            font-size: 0.9rem;
+        }
     }
-    
-    .copyright {
-      text-align: center;
-      font-size: 0.9rem;
-    }
-  }
 }
 
 .main {
-  flex: 1;
-  padding: 2rem;
-  font-family: inherit;
-  position: relative;
-  padding-bottom: 1rem;
+    flex: 1;
+    padding: 2rem;
+    font-family: inherit;
+    position: relative;
+    padding-bottom: 1rem;
 }
 
 .aboutContent {
-  max-width: 1200px;
-  margin: 0 auto;
-  font-family: inherit;
-  height: 90vh;
-  position: relative;
-  
-  .introContainer {
-    position: absolute;
-    right: 5%;
-    top: -10%;
-    width: 120%;
-    display: flex;
-    align-items: center;
-    gap: 3rem;
-    text-shadow: 0 2px 4px rgba(48, 67, 123, 0.4);
-  }
-
-  .catGif {
-    width: 600px;
-    height: 600px;
-    object-fit: contain;
-    flex-shrink: 0;
-    margin-left: 20px;
-    margin-top: 100px;
+    max-width: 1200px;
+    margin: 0 auto;
+    font-family: inherit;
+    height: 90vh;
     position: relative;
-    filter: drop-shadow(0 -10px 25px rgba(255, 255, 255, 0));
-    animation: glowing 4s ease-in-out infinite; // более медленная анимация
-  }
-  
-  @keyframes glowing {
-    0% {
-      filter: drop-shadow(0 -10px 25px rgba(255, 255, 255, 0));
-    }
-    50% {
-      filter: drop-shadow(0 -10px 25px rgba(255, 255, 255, 0.5)); // слабее и мягче свечение
-    }
-    100% {
-      filter: drop-shadow(0 -10px 25px rgba(255, 255, 255, 0));
-    }   
-  }
-  
 
-  h1 {
-    font-size: 2.2rem;
-    margin-bottom: 1.5rem;
-    font-weight: 700;
-    font-family: 'Bergamasco', sans-serif;
-    text-align: center;
-    flex: 1;
-    color: $color-light-blue;
-  }
+    .introContainer {
+        position: absolute;
+        right: 5%;
+        top: -10%;
+        width: 120%;
+        display: flex;
+        align-items: center;
+        gap: 3rem;
+        text-shadow: 0 2px 4px rgba(48, 67, 123, 0.4);
+    }
+
+    .catGif {
+        width: 600px;
+        height: 600px;
+        object-fit: contain;
+        flex-shrink: 0;
+        margin-left: 20px;
+        margin-top: 100px;
+        position: relative;
+        filter: drop-shadow(0 -10px 25px rgba(255, 255, 255, 0));
+        animation: glowing 4s ease-in-out infinite; 
+    }
+
+    @keyframes glowing {
+        0% {
+            filter: drop-shadow(0 -10px 25px rgba(255, 255, 255, 0));
+        }
+
+        50% {
+            filter: drop-shadow(0 -10px 25px rgba(255, 255, 255, 0.5));
+        }
+
+        100% {
+            filter: drop-shadow(0 -10px 25px rgba(255, 255, 255, 0));
+        }
+    }
+
+    h1 {
+        font-size: 2.2rem;
+        margin-bottom: 1.5rem;
+        font-weight: 700;
+        font-family: 'Bergamasco', sans-serif;
+        text-align: center;
+        flex: 1;
+        color: $color-light-blue;
+    }
 }
 
 .boxContainer {
-  height: 100%;
-  position: relative;
+    height: 100%;
+    position: relative;
 }
 
 .contentBox {
-  position: absolute;
-  width: 35%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  color: #30437B;
-  font-family: 'Ysabeau SC', sans-serif;
-  padding-left: 2rem;
-  margin-top: -80px;
-  
-  &::before {
-    content: attr(data-number);
-    position: absolute;
-    font-size: 4rem;
-    font-weight: bold;
-    font-family: 'Bergamasco', sans-serif;
-    color: rgba(48, 67, 123, 0.2);
-    left: -2rem;
-    top: 50%;
-    transform: translateY(-50%);
-    z-index: -1;
-    font-style: italic; /* добавлено для курсива */
-  }
-  
-  
-  h2, p {
-    width: 100%;
-    text-align: center;
-    margin-bottom: 1rem;
-    color: #30437B;
-    font-size: 1.4rem;
-  }
-  
-  &:nth-child(1) {
-    left: 65%;
-    top: 45%;
-  }
-  
-  &:nth-child(2) {
-    left: 5%;
-    top: 60%;
-  }
-  
-  &:nth-child(3) {
-    left: 50%;
-    top: 75%;
-  }
-}
-
-@keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-15px); }
-}
-
-.floatingBooks {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-
-  img {
-    position: absolute;
-    width: 140px;
-    opacity: 0.9;
-    animation: floatBooks 6s ease-in-out infinite;
-    transform-origin: center;
-  }
-
-  // Левые книги - начальные позиции для 1440px
-  .bookLeftTop {
-    left: -70px;
-    top: 10%;
-    animation-delay: 0s;
-  }
-  
-  .bookLeftBottom {
-    left: -70px;
-    top: 70%;
-    animation-delay: 2s;
-  }
-  
-  .bookLeftMiddle {
-    left: -70px;
-    top: 40%;
-    animation-delay: 1.5s;
-  }
-
-  // Правые книги - начальные позиции для 1440px
-  .bookRightTop {
-    right: -70px;
-    top: 15%;
-    animation-delay: 1s;
-  }
-  
-  .bookRightBottom {
-    right: -70px;
-    top: 80%;
-    animation-delay: 3s;
-  }
-  
-  .bookRightMiddle {
-    right: -70px;
-    top: 50%;
-    animation-delay: 2.5s;
-  }
-}
-
-@keyframes floatBooks {
-  0%, 100% {
-    transform: translateY(0) rotate(-2deg);
-  }
-  50% {
-    transform: translateY(-20px) rotate(2deg);
-  }
-}
-
-
-// XL: до 1440px
-@media (max-width: 1440px) {
-  .aboutContent {
-    .catGif {
-      width: 500px;
-      height: 500px;
-      margin-left: 400px;
-    }
-
-    .introContainer {
-      gap: 2rem;
-      right: 3%;
-      top: -5%;
-    }
-
-    h1 {
-      font-size: 2rem;
-    }
-  }
-
-  .contentBox {
-    width: 40%;
-
-    h2, p {
-      font-size: 1.3rem;
-    }
-
-    &:nth-child(1) {
-      left: 60%;
-      top: 47%;
-    }
-
-    &:nth-child(2) {
-      left: 8%;
-      top: 62%;
-    }
-
-    &:nth-child(3) {
-      left: 45%;
-      top: 77%;
-    }
-  }
-  .floatingBooks {
-    .bookLeftTop {
-      left: -70px !important;
-    }
-    .bookLeftBottom {
-      left: -70px !important;
-    }
-    .bookLeftMiddle {
-      left: -70px !important;
-    }
-
-    .bookRightTop {
-      right: -270px !important;
-    }
-    .bookRightBottom {
-      right: -270px !important;
-    }
-    .bookRightMiddle {
-      right: -270px !important;
-    }
-  }
-
-}
-
-@media (max-width: 1439px) {
-  .floatingBooks {
-    display: none;
-  }
-  .aboutContent {
-    .catGif {
-      width: 500px;
-      height: 500px;
-      margin-left: 250px;
-      margin-top: 40px;
-    }
-
-    .introContainer {
-      gap: 2rem;
-      right: 3%;
-      top: -5%;
-    }
-
-    h1 {
-      font-size: 2rem;
-    }
-  }
-  // Скрываем навигацию в хедере
-  header .nav {
-    display: none;
-  }
-}
-
-// Плавное изменение позиции книг при увеличении экрана (1441px - 1999px)
-@media (min-width: 1441px) {
-  .floatingBooks {
-    .bookLeftTop,
-    .bookLeftBottom,
-    .bookLeftMiddle {
-      left: calc(-70px + (100vw - 1440px) * -0.5);
-    }
-    
-    .bookRightTop,
-    .bookRightBottom,
-    .bookRightMiddle {
-      right: calc(-70px + (100vw - 1440px) * -0.5);
-    }
-  }
-
-  .aboutContent {
-    .catGif {
-      width: 500px;
-      height: 500px;
-      margin-left: 250px;
-      margin-top: 40px;
-    }
-
-    .introContainer {
-      gap: 2rem;
-      right: 3%;
-      top: -5%;
-    }
-
-    h1 {
-      font-size: 2rem;
-    }
-  }
-}
-
-// Для очень больших экранов (2000px и больше)
-@media (min-width: 2000px) {
-  .aboutContent {
-    .catGif {
-      width: 600px !important; // Добавляем !important для приоритета
-      height: 600px !important;
-      margin-left: 250px;
-    }
-
-    .introContainer {
-      gap: 3rem; // Возвращаем оригинальный gap
-      right: 5%;
-      top: -10%;
-    }
-
-    h1 {
-      font-size: 2.2rem; // Возвращаем оригинальный размер
-    }
-  }
-  
-  .floatingBooks {
-    .bookLeftTop,
-    .bookLeftBottom,
-    .bookLeftMiddle {
-      left: -400px;
-    }
-    
-    .bookRightTop,
-    .bookRightBottom,
-    .bookRightMiddle {
-      right: -400px;
-    }
-  }
-}
-
-
-// MD: до 1024px
-@media (max-width: 1024px) {
-  .aboutContent {
-    .catGif {
-      width: 400px;
-      height: 400px;
-      margin-top: 50px;
-    }
-
-    .introContainer {
-      gap: 1.5rem;
-      right: 2%;
-      top: 0%;
-    }
-
-    h1 {
-      font-size: 1.8rem;
-    }
-  }
-
-  .contentBox {
-    width: 50%;
-
-    h2, p {
-      font-size: 1.2rem;
-    }
-
-    &:nth-child(1) {
-      left: 55%;
-    }
-
-    &:nth-child(2) {
-      left: 10%;
-    }
-
-    &:nth-child(3) {
-      left: 40%;
-    }
-  }
-
-  .floatingBooks img {
-    width: 120px;
-  }
-}
-
-// SM: до 768px
-@media (max-width: 768px) {
-  .aboutContent {
-    .catGif {
-      width: 350px;
-      height: 350px;
-      margin-left: 150px;
-      margin-top: 40px;
-    }
-
-    .introContainer {
-      gap: 2rem;
-      right: 3%;
-      top: -5%;
-    }
-
-    h1 {
-      font-size: 1.5rem;
-    }
-  }
-  .contentBox {
     position: absolute;
     width: 35%;
     display: flex;
@@ -491,179 +139,602 @@
     color: #30437B;
     font-family: 'Ysabeau SC', sans-serif;
     padding-left: 2rem;
-    margin-top: -200px;
-  
-  h2, p {
-    width: 100%;
-    text-align: center;
-    margin-bottom: 1rem;
-    color: #30437B;
-    font-size: 1rem;
-  }
+    margin-top: -80px;
+
+    &::before {
+        content: attr(data-number);
+        position: absolute;
+        font-size: 4rem;
+        font-weight: bold;
+        font-family: 'Bergamasco', sans-serif;
+        color: rgba(48, 67, 123, 0.2);
+        left: -2rem;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: -1;
+        font-style: italic;
+    }
+
+    h2,
+    p {
+        width: 100%;
+        text-align: center;
+        margin-bottom: 1rem;
+        color: #30437B;
+        font-size: 1.4rem;
+    }
+
+    &:nth-child(1) {
+        left: 65%;
+        top: 45%;
+    }
+
+    &:nth-child(2) {
+        left: 5%;
+        top: 60%;
+    }
+
+    &:nth-child(3) {
+        left: 50%;
+        top: 75%;
+    }
 }
+
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-15px);
+    }
+}
+
+.floatingBooks {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+
+    img {
+        position: absolute;
+        width: 140px;
+        opacity: 0.9;
+        animation: floatBooks 6s ease-in-out infinite;
+        transform-origin: center;
+    }
+
+    .bookLeftTop {
+        left: -70px;
+        top: 10%;
+        animation-delay: 0s;
+    }
+
+    .bookLeftBottom {
+        left: -70px;
+        top: 70%;
+        animation-delay: 2s;
+    }
+
+    .bookLeftMiddle {
+        left: -70px;
+        top: 40%;
+        animation-delay: 1.5s;
+    }
+
+    .bookRightTop {
+        right: -70px;
+        top: 15%;
+        animation-delay: 1s;
+    }
+
+    .bookRightBottom {
+        right: -70px;
+        top: 80%;
+        animation-delay: 3s;
+    }
+
+    .bookRightMiddle {
+        right: -70px;
+        top: 50%;
+        animation-delay: 2.5s;
+    }
+}
+
+@keyframes floatBooks {
+
+    0%,
+    100% {
+        transform: translateY(0) rotate(-2deg);
+    }
+
+    50% {
+        transform: translateY(-20px) rotate(2deg);
+    }
+}
+
+.contactBox {
+    position: absolute;
+    left: -37%;
+    top: 100%;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+
+    h2 {
+        font-family: 'Bergamasco', sans-serif;
+        color: #30437B;
+        font-size: 1.4rem;
+        margin: 0;
+        white-space: nowrap;
+        order: 1;
+    }
+
+    .contactRow {
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+    }
+
+    .socialIcons {
+        display: flex;
+        gap: 1rem;
+        order: 2;
+
+        .socialIcon {
+            position: relative;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: contain;
+                filter: drop-shadow(0 2px 4px rgba(48, 67, 123, 0.3));
+                transition: opacity 0.3s ease;
+                position: absolute;
+                top: 0;
+                left: 0;
+
+                &:last-child {
+                    opacity: 0;
+                }
+            }
+
+            &:hover {
+                img:first-child {
+                    opacity: 0;
+                }
+
+                img:last-child {
+                    opacity: 1;
+                }
+            }
+        }
+    }
+}
+
+// XL: до 1440px
+@media (max-width: 1440px) {
+    .aboutContent {
+        .catGif {
+            width: 500px;
+            height: 500px;
+            margin-left: 400px;
+        }
+
+        .introContainer {
+            gap: 2rem;
+            right: 3%;
+            top: -5%;
+        }
+
+        h1 {
+            font-size: 2rem;
+        }
+    }
+
+    .contentBox {
+        width: 40%;
+
+        h2,
+        p {
+            font-size: 1.3rem;
+        }
+
+        &:nth-child(1) {
+            left: 60%;
+            top: 47%;
+        }
+
+        &:nth-child(2) {
+            left: 8%;
+            top: 62%;
+        }
+
+        &:nth-child(3) {
+            left: 45%;
+            top: 77%;
+        }
+    }
+
+    .floatingBooks {
+        .bookLeftTop {
+            left: -70px !important;
+        }
+
+        .bookLeftBottom {
+            left: -70px !important;
+        }
+
+        .bookLeftMiddle {
+            left: -70px !important;
+        }
+
+        .bookRightTop {
+            right: -270px !important;
+        }
+
+        .bookRightBottom {
+            right: -270px !important;
+        }
+
+        .bookRightMiddle {
+            right: -270px !important;
+        }
+    }
+}
+
+@media (max-width: 1439px) {
+    .floatingBooks {
+        display: none;
+    }
+
+    .aboutContent {
+        .catGif {
+            width: 500px;
+            height: 500px;
+            margin-left: 250px;
+            margin-top: 40px;
+        }
+
+        .introContainer {
+            gap: 2rem;
+            right: 3%;
+            top: -5%;
+        }
+
+        h1 {
+            font-size: 2rem;
+        }
+    }
+
+    header .nav {
+        display: none;
+    }
+
+    .contactBox {
+        position: absolute;
+        left: 5%;
+        top: 100%;
+    }
+}
+
+@media (min-width: 1441px) {
+    .floatingBooks {
+
+        .bookLeftTop,
+        .bookLeftBottom,
+        .bookLeftMiddle {
+            left: calc(-70px + (100vw - 1440px) * -0.5);
+        }
+
+        .bookRightTop,
+        .bookRightBottom,
+        .bookRightMiddle {
+            right: calc(-70px + (100vw - 1440px) * -0.5);
+        }
+    }
+
+    .aboutContent {
+        .catGif {
+            width: 500px;
+            height: 500px;
+            margin-left: 250px;
+            margin-top: 40px;
+        }
+
+        .introContainer {
+            gap: 2rem;
+            right: 3%;
+            top: -5%;
+        }
+
+        h1 {
+            font-size: 2rem;
+        }
+    }
+
+    .contactBox {
+        position: absolute;
+        left: -3%;
+        top: 100%;
+    }
+}
+
+@media (min-width: 2000px) {
+    .aboutContent {
+        .catGif {
+            width: 600px !important;
+            height: 600px !important;
+            margin-left: 250px;
+        }
+
+        .introContainer {
+            gap: 3rem;
+            right: 5%;
+            top: -10%;
+        }
+
+        h1 {
+            font-size: 2.2rem;
+        }
+    }
+
+    .floatingBooks {
+
+        .bookLeftTop,
+        .bookLeftBottom,
+        .bookLeftMiddle {
+            left: -400px;
+        }
+
+        .bookRightTop,
+        .bookRightBottom,
+        .bookRightMiddle {
+            right: -400px;
+        }
+    }
+
+    .contactBox {
+        position: absolute;
+        left: -37%;
+        top: 100%;
+    }
+}
+
+@media screen and (min-width: 1439px) and (max-width: 1440px) {
+    .contactBox {
+        position: absolute;
+        left: 10%;
+        top: 100%;
+    }
+}
+
+// MD: до 1024px
+@media (max-width: 1024px) {
+    .aboutContent {
+        .catGif {
+            width: 400px;
+            height: 400px;
+            margin-top: 50px;
+        }
+
+        .introContainer {
+            gap: 1.5rem;
+            right: 2%;
+            top: 0%;
+        }
+
+        h1 {
+            font-size: 1.8rem;
+        }
+    }
+
+    .contentBox {
+        width: 50%;
+
+        h2,
+        p {
+            font-size: 1.2rem;
+        }
+
+        &:nth-child(1) {
+            left: 55%;
+        }
+
+        &:nth-child(2) {
+            left: 10%;
+        }
+
+        &:nth-child(3) {
+            left: 40%;
+        }
+    }
+
+    .floatingBooks img {
+        width: 120px;
+    }
+
+    .contactBox {
+        position: absolute;
+        left: 10%;
+        top: 100%;
+    }
+}
+
+// SM: до 768px
+@media (max-width: 768px) {
+    .aboutContent {
+        .catGif {
+            width: 350px;
+            height: 350px;
+            margin-left: 150px;
+            margin-top: 40px;
+        }
+
+        .introContainer {
+            gap: 2rem;
+            right: 3%;
+            top: -5%;
+        }
+
+        h1 {
+            font-size: 1.5rem;
+        }
+    }
+
+    .contentBox {
+        position: absolute;
+        width: 35%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        color: #30437B;
+        font-family: 'Ysabeau SC', sans-serif;
+        padding-left: 2rem;
+        margin-top: -200px;
+
+        h2,
+        p {
+            width: 100%;
+            text-align: center;
+            margin-bottom: 1rem;
+            color: #30437B;
+            font-size: 1rem;
+        }
+    }
 }
 
 // XS: до 425px
 @media (max-width: 767px) {
-  .aboutContent {
-    .catGif {
-      width: 300px;
-      height: 300px;
-      margin: 30px auto 0 auto;
-      display: block;
+    .aboutContent {
+        .catGif {
+            width: 350px;
+            height: 350px;
+            margin: 30px auto 0 auto;
+            display: block;
+        }
+
+        .introContainer {
+            flex-direction: column;
+            align-items: center;
+            gap: 1.2rem;
+            width: 100%;
+            right: 0;
+            position: relative;
+            top: 0;
+        }
+
+        h1 {
+            font-size: 1.5rem;
+            text-align: center;
+            padding: 0 1rem;
+        }
     }
 
-    .introContainer {
-      flex-direction: column;
-      align-items: center;
-      gap: 1.2rem;
-      width: 100%;
-      right: 0;
-      position: relative;
-      top: 0;
+    .boxContainer {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
 
-    h1 {
-      font-size: 1.5rem;
-      text-align: center;
-      padding: 0 1rem;
-    }
-  }
+    .contentBox {
+        position: relative !important;
+        width: 85%;
+        left: auto !important;
+        top: auto !important;
+        margin: 1.5rem 0;
+        padding: 0 1rem;
 
-  .boxContainer {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
+        &::before {
+            left: -1rem;
+            font-size: 3rem;
+        }
 
-  .contentBox {
-    position: relative !important;
-    width: 85%;
-    left: auto !important;
-    top: auto !important;
-    margin: 1.5rem 0;
-    padding: 0 1rem;
-
-    &::before {
-      left: -1rem;
-      font-size: 3rem;
+        h2,
+        p {
+            font-size: 1.5rem;
+        }
     }
 
-    h2, p {
-      font-size: 1rem;
+    .floatingBooks img {
+        display: none;
     }
-  }
 
-  .floatingBooks img {
-    display: none;
-  }
-
-  .aboutContent {
-    position: relative;
-    padding-bottom: 400px; // Создаем место для контента
-  }
+    .aboutContent {
+        position: relative;
+        padding-bottom: 400px;
+    }
 }
 
 // XS: до 425px
 @media (max-width: 425px) {
-  .aboutContent {
-    .catGif {
-      width: 300px;
-      height: 300px;
-      margin: 30px auto 0 auto;
-      display: block;
+    .aboutContent {
+        .catGif {
+            width: 300px;
+            height: 300px;
+            margin: 30px auto 0 auto;
+            display: block;
+        }
+
+        .introContainer {
+            flex-direction: column;
+            align-items: center;
+            gap: 1.2rem;
+            width: 100%;
+            right: 0;
+            position: relative;
+            top: 0;
+        }
+
+        h1 {
+            font-size: 1.5rem;
+            text-align: center;
+            padding: 0 1rem;
+        }
     }
 
-    .introContainer {
-      flex-direction: column;
-      align-items: center;
-      gap: 1.2rem;
-      width: 100%;
-      right: 0;
-      position: relative;
-      top: 0;
+    .boxContainer {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
 
-    h1 {
-      font-size: 1.5rem;
-      text-align: center;
-      padding: 0 1rem;
-    }
-  }
+    .contentBox {
+        position: relative !important;
+        width: 85%;
+        left: auto !important;
+        top: auto !important;
+        margin: 1.5rem 0;
+        padding: 0 1rem;
 
-  .boxContainer {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
+        &::before {
+            left: -1rem;
+            font-size: 3rem;
+        }
 
-  .contentBox {
-    position: relative !important;
-    width: 85%;
-    left: auto !important;
-    top: auto !important;
-    margin: 1.5rem 0;
-    padding: 0 1rem;
-
-    &::before {
-      left: -1rem;
-      font-size: 3rem;
+        h2,
+        p {
+            font-size: 1rem;
+        }
     }
 
-    h2, p {
-      font-size: 1rem;
+    .floatingBooks img {
+        display: none;
     }
-  }
 
-  .floatingBooks img {
-    display: none;
-  }
-
-  .aboutContent {
-    position: relative;
-    padding-bottom: 400px; // Создаем место для контента
-  }
-}
-
-// Стили для мобильной навигации
-.mobileNav {
-  display: none; // По умолчанию скрыто
-  
-  @media (max-width: 1440px) {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1.5rem;
-    padding: 2rem 0;
-    margin-top: 3rem;
-    border-top: 1px solid rgba(48, 67, 123, 0.3);
-  }
-
-  @media (max-width: 768px) {
-    gap: 1rem;
-    padding: 1.5rem 0;
-  }
-}
-
-.mobileNavLink {
-  color: $color-light-blue;
-  text-decoration: none;
-  font-family: 'Ysabeau SC', sans-serif;
-  font-size: 1.2rem;
-  padding: 0.8rem 2rem;
-  border-radius: 50px;
-  background: rgba(48, 67, 123, 0.2);
-  transition: all 0.3s ease;
-  
-  &:hover {
-    background: rgba(48, 67, 123, 0.4);
-    transform: translateY(-2px);
-  }
-
-  @media (max-width: 768px) {
-    font-size: 1rem;
-    padding: 0.6rem 1.5rem;
-    width: 80%;
-    text-align: center;
-  }
+    .aboutContent {
+        position: relative;
+        padding-bottom: 400px;
+    }
 }

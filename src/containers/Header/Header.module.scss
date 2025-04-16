@@ -7,7 +7,7 @@
     margin: 20px auto;
     color: $color-light-blue;
     display: flex;
-    align-items: center ;
+    align-items: center;
     justify-content: center;
 }
 
@@ -33,7 +33,18 @@
 
 .nav {
     display: none;
-    color: $color-light-blue
+    color: $color-light-blue;
+}
+
+.link {
+    color: $color-light-blue;
+    font-size: 24px;
+    font-weight: bold;
+    transition: 0.2s;
+}
+
+.link:hover {
+    color: $color-link-hover;
 }
 
 @include breakpoints(sm) {
@@ -71,22 +82,50 @@
         display: flex;
         flex-direction: row;
         gap: 40px;
-        color: $color-light-blue;
-        font-size: 24px;
-        font-weight: bold;
-    }
-
-    .link {
-        color: $color-light-blue;
-        transition: 0.2s;
-    }
-
-    .link:hover {
-        color: $color-link-hover;
     }
 
     .image {
         width: 70px;
         height: 70px;
+    }
+}
+
+@media (max-width: 1439px) {
+    .header {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start; 
+      padding: 20px 0;
+      margin: 0 auto;
+      color: $color-light-blue;
+    }
+  
+    .logo {
+      margin-bottom: 15px;
+      color: $color-light-blue;
+      font-weight: bold;
+      font-size: 30px;
+    }
+  
+    .nav {
+      display: flex;
+      flex-direction: row;
+      gap: 40px;
+      margin-top: 10px;
+      justify-content: center;
+      color: $color-light-blue;
+    }
+}
+
+@media (max-width: 766px) {
+    .nav {
+        flex-direction: column;  
+        gap: 10px;               
+        text-align: center;
+        margin-top: 50px;
+    }
+    .nav .link {
+        font-size: 25px; 
     }
 }
