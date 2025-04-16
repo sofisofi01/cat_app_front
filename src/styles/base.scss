@@ -32,9 +32,6 @@ strong {
 
 a {
   text-decoration: none;
-  &:visited {
-    color: inherit; // Наследует цвет родителя
-  }
 }
 
 ul,

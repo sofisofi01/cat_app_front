@@ -6,8 +6,7 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "test": "echo \"No tests specified\" && exit 0",
-    "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
+    "lint": "next lint",
     "prepare": "husky install"
   },
   "dependencies": {
@@ -25,7 +24,7 @@
     "eslint": "^9",
     "eslint-config-next": "15.2.4",
     "eslint-config-prettier": "^10.1.1",
-    "husky": "^8.0.0",
+    "husky": "^9.1.7",
     "lint-staged": "^15.5.0",
     "prettier": "^3.5.3",
     "sass": "^1.86.3",
