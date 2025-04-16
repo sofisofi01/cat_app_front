@@ -16,9 +16,22 @@ const AboutPage: NextPage = () => {
         <Header menu={data} />
         <main className={styles.main}>
           <div className={styles.aboutContent}>
+          <div className={styles.floatingBooks}>
+            <img src="/images/favicon/book1.png" alt="book left top" className={styles.bookLeftTop} />
+            <img src="/images/favicon/book1.png" alt="book left bottom" className={styles.bookLeftBottom} />
+            <img src="/images/favicon/book2.png" alt="book right top" className={styles.bookRightTop} />
+            <img src="/images/favicon/book2.png" alt="book right bottom" className={styles.bookRightBottom} />
+
+            {/* новые книги */}
+            <img src="/images/favicon/book2.png" alt="book left middle" className={styles.bookLeftMiddle} />
+            <img src="/images/favicon/book1.png" alt="book right middle" className={styles.bookRightMiddle} />
+          </div>
+
+
+
             <div className={styles.introContainer}>
               <img
-                src="/images/favicon/cat.gif"
+                src="/images/favicon/cat_moon.png"
                 alt="Funny cat animation"
                 className={styles.catGif}
                 loading="lazy"
