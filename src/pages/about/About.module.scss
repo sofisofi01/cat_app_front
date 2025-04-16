@@ -79,10 +79,11 @@
     position: absolute;
     right: 5%;
     top: -10%;
-    width: 110%;
+    width: 120%;
     display: flex;
     align-items: center;
     gap: 3rem;
+    text-shadow: 0 2px 4px rgba(48, 67, 123, 0.4);
   }
 
   .catGif {
@@ -189,52 +190,53 @@
   left: 0;
   width: 100%;
   height: 100%;
-  pointer-events: none; // чтобы книги не мешали кликам
+  pointer-events: none;
 
   img {
     position: absolute;
-    width: 140px; // увеличим размер
+    width: 140px;
     opacity: 0.9;
     animation: floatBooks 6s ease-in-out infinite;
     transform-origin: center;
   }
 
+  // Левые книги - начальные позиции для 1440px
   .bookLeftTop {
-    left: -550px; // намного левее экрана
+    left: -70px;
     top: 10%;
     animation-delay: 0s;
   }
   
   .bookLeftBottom {
-    left: -530px;
+    left: -70px;
     top: 70%;
     animation-delay: 2s;
   }
   
+  .bookLeftMiddle {
+    left: -70px;
+    top: 40%;
+    animation-delay: 1.5s;
+  }
+
+  // Правые книги - начальные позиции для 1440px
   .bookRightTop {
-    right: -550px; // намного правее экрана
+    right: -70px;
     top: 15%;
     animation-delay: 1s;
   }
   
   .bookRightBottom {
-    right: -530px;
+    right: -70px;
     top: 80%;
     animation-delay: 3s;
   }
   
-  .bookLeftMiddle {
-    left: -550px;
-    top: 40%;
-    animation-delay: 1.5s;
-  }
-  
   .bookRightMiddle {
-    right: -530px;
+    right: -70px;
     top: 50%;
     animation-delay: 2.5s;
   }
-  
 }
 
 @keyframes floatBooks {
@@ -253,7 +255,7 @@
     .catGif {
       width: 500px;
       height: 500px;
-      margin-left: 250px;
+      margin-left: 400px;
     }
 
     .introContainer {
@@ -310,7 +312,108 @@
       right: -270px !important;
     }
   }
+
 }
+
+@media (max-width: 1439px) {
+  .floatingBooks {
+    display: none;
+  }
+  .aboutContent {
+    .catGif {
+      width: 500px;
+      height: 500px;
+      margin-left: 250px;
+      margin-top: 40px;
+    }
+
+    .introContainer {
+      gap: 2rem;
+      right: 3%;
+      top: -5%;
+    }
+
+    h1 {
+      font-size: 2rem;
+    }
+  }
+  // Скрываем навигацию в хедере
+  header .nav {
+    display: none;
+  }
+}
+
+// Плавное изменение позиции книг при увеличении экрана (1441px - 1999px)
+@media (min-width: 1441px) {
+  .floatingBooks {
+    .bookLeftTop,
+    .bookLeftBottom,
+    .bookLeftMiddle {
+      left: calc(-70px + (100vw - 1440px) * -0.5);
+    }
+    
+    .bookRightTop,
+    .bookRightBottom,
+    .bookRightMiddle {
+      right: calc(-70px + (100vw - 1440px) * -0.5);
+    }
+  }
+
+  .aboutContent {
+    .catGif {
+      width: 500px;
+      height: 500px;
+      margin-left: 250px;
+      margin-top: 40px;
+    }
+
+    .introContainer {
+      gap: 2rem;
+      right: 3%;
+      top: -5%;
+    }
+
+    h1 {
+      font-size: 2rem;
+    }
+  }
+}
+
+// Для очень больших экранов (2000px и больше)
+@media (min-width: 2000px) {
+  .aboutContent {
+    .catGif {
+      width: 600px !important; // Добавляем !important для приоритета
+      height: 600px !important;
+      margin-left: 250px;
+    }
+
+    .introContainer {
+      gap: 3rem; // Возвращаем оригинальный gap
+      right: 5%;
+      top: -10%;
+    }
+
+    h1 {
+      font-size: 2.2rem; // Возвращаем оригинальный размер
+    }
+  }
+  
+  .floatingBooks {
+    .bookLeftTop,
+    .bookLeftBottom,
+    .bookLeftMiddle {
+      left: -400px;
+    }
+    
+    .bookRightTop,
+    .bookRightBottom,
+    .bookRightMiddle {
+      right: -400px;
+    }
+  }
+}
+
 
 // MD: до 1024px
 @media (max-width: 1024px) {
@@ -359,6 +462,49 @@
 
 // SM: до 768px
 @media (max-width: 768px) {
+  .aboutContent {
+    .catGif {
+      width: 350px;
+      height: 350px;
+      margin-left: 150px;
+      margin-top: 40px;
+    }
+
+    .introContainer {
+      gap: 2rem;
+      right: 3%;
+      top: -5%;
+    }
+
+    h1 {
+      font-size: 1.5rem;
+    }
+  }
+  .contentBox {
+    position: absolute;
+    width: 35%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #30437B;
+    font-family: 'Ysabeau SC', sans-serif;
+    padding-left: 2rem;
+    margin-top: -200px;
+  
+  h2, p {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 1rem;
+    color: #30437B;
+    font-size: 1rem;
+  }
+}
+}
+
+// XS: до 425px
+@media (max-width: 767px) {
   .aboutContent {
     .catGif {
       width: 300px;
@@ -411,29 +557,113 @@
   .floatingBooks img {
     display: none;
   }
+
+  .aboutContent {
+    position: relative;
+    padding-bottom: 400px; // Создаем место для контента
+  }
 }
 
 // XS: до 425px
 @media (max-width: 425px) {
   .aboutContent {
     .catGif {
-      width: 200px;
-      height: 200px;
+      width: 300px;
+      height: 300px;
+      margin: 30px auto 0 auto;
+      display: block;
+    }
+
+    .introContainer {
+      flex-direction: column;
+      align-items: center;
+      gap: 1.2rem;
+      width: 100%;
+      right: 0;
+      position: relative;
+      top: 0;
     }
 
     h1 {
-      font-size: 1.3rem;
+      font-size: 1.5rem;
+      text-align: center;
+      padding: 0 1rem;
     }
+  }
+
+  .boxContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 
   .contentBox {
-    h2 {
-      font-size: 1.1rem;
+    position: relative !important;
+    width: 85%;
+    left: auto !important;
+    top: auto !important;
+    margin: 1.5rem 0;
+    padding: 0 1rem;
+
+    &::before {
+      left: -1rem;
+      font-size: 3rem;
     }
 
-    p {
-      font-size: 0.95rem;
+    h2, p {
+      font-size: 1rem;
     }
+  }
+
+  .floatingBooks img {
+    display: none;
+  }
+
+  .aboutContent {
+    position: relative;
+    padding-bottom: 400px; // Создаем место для контента
   }
 }
 
+// Стили для мобильной навигации
+.mobileNav {
+  display: none; // По умолчанию скрыто
+  
+  @media (max-width: 1440px) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 2rem 0;
+    margin-top: 3rem;
+    border-top: 1px solid rgba(48, 67, 123, 0.3);
+  }
+
+  @media (max-width: 768px) {
+    gap: 1rem;
+    padding: 1.5rem 0;
+  }
+}
+
+.mobileNavLink {
+  color: $color-light-blue;
+  text-decoration: none;
+  font-family: 'Ysabeau SC', sans-serif;
+  font-size: 1.2rem;
+  padding: 0.8rem 2rem;
+  border-radius: 50px;
+  background: rgba(48, 67, 123, 0.2);
+  transition: all 0.3s ease;
+  
+  &:hover {
+    background: rgba(48, 67, 123, 0.4);
+    transform: translateY(-2px);
+  }
+
+  @media (max-width: 768px) {
+    font-size: 1rem;
+    padding: 0.6rem 1.5rem;
+    width: 80%;
+    text-align: center;
+  }
+}
