@@ -59,7 +59,7 @@ const AboutPage: NextPage = () => {
                   Поделитесь фото своего кота, и мы расскажем, о чём он думает. Возможно, он мечтает о мировом господстве или просто хочет ещё одну порцию корма. Ваш кот станет частью нашей коллекции котомыслей! 🐾
                 </p>
               </div>
-              <div className={`${styles.contentBox} ${styles.contactBox}`}>
+              {/* <div className={`${styles.contentBox} ${styles.contactBox}`}>
                 <div className={styles.contactRow}>
                   <h2>Связаться с нами</h2>
                   <div className={styles.socialIcons}>
@@ -77,7 +77,7 @@ const AboutPage: NextPage = () => {
                     </a>
                   </div>
                 </div>
-              </div>
+              </div> */}
             </div>
           </div>
         </main>
