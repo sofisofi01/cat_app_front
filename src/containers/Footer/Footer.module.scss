@@ -1,3 +1,13 @@
+@import '../../styles/mixins/breakpoints.scss';
+@import '../../styles/variables/colors.scss';
+@import '../../styles/variables/fonts.scss';
+
 .footer {
-    color: white;
+    color: $color-blue;
+    font-family: $font-family-secondary;
+    font-weight: bold;
+    font-size: 30px;
+    padding: 0 40px;
+    display: flex;
+    justify-content: end;
 }
