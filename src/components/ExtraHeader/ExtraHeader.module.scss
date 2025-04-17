@@ -1,3 +1,53 @@
-.wrapper {
-    width: 100px;
+@import '../../styles/mixins/breakpoints.scss';
+@import '../../styles/variables/fonts.scss';
+@import '../../styles/variables/colors.scss';
+
+.menuContainer {
+    margin-top: 60px;
 }
+
+.menuList {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    text-align: center;
+    list-style: none;
+    padding-left: 0;
+    font-size: 24px;
+    font-weight: bold;
+    color: $color-blue;
+}
+
+.menuLink {
+    color: $color-blue;
+    transition: 0.2s;
+
+    &.active {
+        padding: 8px;
+        border-radius: 30px;
+        background-color: $color-blue-tab;
+    }
+}
+
+.menuLink:hover {
+    color: $color-dark-blue;
+}
+
+@include breakpoints(sm) {
+    .menuList {
+        flex-direction: row;
+        gap: 50px;
+    }
+
+    .menuItem {
+        max-width: 140px;
+    }
+}
+
+@include breakpoints(xl) {
+    .menuContainer {
+        display: none;
+    }
+}
+

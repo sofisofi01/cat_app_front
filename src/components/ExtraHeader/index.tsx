@@ -17,9 +17,9 @@ export function ExtraHeader({ page }: ExtraHeaderProps) {
             {menuItems.map((item) => (
               <li 
                 key={item.id}
-                className={classNames('menuItem', { active: page === item.id })}
+                className={styles.menuItem}
               >
-                <a href={`/${item.id}`} className={styles.menuLink}>
+                <a href={`/${item.id}`} className={classNames(styles.menuLink, { [styles.active]: page === item.id })}>
                   {item.name}
                 </a>
               </li>
