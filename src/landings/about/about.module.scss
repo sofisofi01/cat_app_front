@@ -1,0 +1,49 @@
+@import '../../styles/mixins/breakpoints.scss';
+@import '../../styles/variables/fonts.scss';
+@import '../../styles/variables/colors.scss';
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.title {
+    font-size: $font-size-large;
+    font-family: $font-family;
+    line-height: 150%;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.caption {
+    font-family: $font-family;
+    line-height: 150%;
+    font-weight: bold;
+    font-style: italic;
+    color: $color-blue;
+}
+
+.itemsWrapper {
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    font-family: $font-family-secondary;
+    color: $color-blue;
+    line-height: 150%;
+    font-size: $font-size-small;
+}
+
+.itemNum {
+    font-family: $font-family;
+    font-size: 30px; 
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.itemTitle {
+    font-weight: bold;
+    margin-bottom: 8px;
+}
