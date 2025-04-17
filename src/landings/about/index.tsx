@@ -1,5 +1,6 @@
 import styles from './about.module.scss'
 import { AboutPageProps } from './types' 
+import { ExtraHeader } from '@/components/ExtraHeader';
 
 
 export function AboutPage({title, caption, items, image}: AboutPageProps) {
@@ -16,6 +17,7 @@ export function AboutPage({title, caption, items, image}: AboutPageProps) {
                 </div>
                 ))}
         </div>
+        <ExtraHeader page={'about'}/>
     </div>
     );
 }
