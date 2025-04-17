@@ -9,6 +9,10 @@
     text-align: center;
 }
 
+.image {
+    display: none;
+}
+
 .title {
     font-size: $font-size-large;
     font-family: $font-family;
@@ -46,4 +50,147 @@
 .itemTitle {
     font-weight: bold;
     margin-bottom: 8px;
+}
+
+@include breakpoints(sm) {
+    .wrapper {
+        position: relative;
+        height: 1000px;
+        display: flex;
+        flex-direction: column;
+        justify-content: end;
+    }
+
+    .head {
+        width: 40%;
+        position: absolute;
+        right: 5%;
+        top: 70px;
+    }
+
+    .image {
+        display: block;
+        position: absolute;
+        width: 320px;
+        height: auto;
+        object-fit: contain;
+        left: 2%;
+        top: 1%;
+    }
+
+    .item {
+        position: absolute;
+        right: 3%;
+        width: 50%;
+        top: 350px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 20px;
+
+        &:nth-child(2) {
+            top: 500px;
+            right: 40%;
+        }
+
+        &:nth-child(3) {
+            top: 650px;
+        }
+    }
+}
+
+@include breakpoints(xl) {
+    .wrapper {
+        height: 1100px;
+    }
+    .title {
+        font-size: 37px;
+    }
+
+    .caption {
+        font-size: 25px;
+    }
+
+    .head {
+        right: 7%;
+        width: 40%;
+    }
+
+    .image {
+        top: 3%;
+        width: 560px;
+        left: 5%;
+    }
+
+    .itemNum {
+        font-size: 40px;
+    }
+
+    .itemTitle {
+        margin-bottom: 30px;
+    }
+
+    .item {
+        top: 500px;
+        width: 40%;
+        font-size: 22px;
+        gap: 40px;
+
+        &:nth-child(2) {
+            top: 700px;
+            right: 50%;
+        }
+
+        &:nth-child(3) {
+            top: 850px;
+        }
+    }
+}
+
+@include breakpoints(xxl) {
+
+    .wrapper {
+        height: 1900px;
+    }
+    
+    .head {
+        top: 12%;
+        right: 15%;
+        width: 40%;
+    }
+
+    .title {
+        font-size: 50px;
+    }
+
+    .caption {
+        font-size: 40px;
+    }
+
+    .image {
+        top: 10%;
+        width: 800px;
+        left: 5%;
+    }
+
+    .itemNum {
+        font-size: 70px;
+    }
+
+    .item {
+        top: 800px;
+        width: 40%;
+        font-size: 40px;
+        line-height: 150%;
+        gap: 40px;
+
+        &:nth-child(2) {
+            top: 1200px;
+            right: 50%;
+        }
+
+        &:nth-child(3) {
+            top: 1400px;
+        }
+    }
 }
