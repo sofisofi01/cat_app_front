@@ -2,6 +2,15 @@
 @import '../../styles/variables/fonts.scss';
 @import '../../styles/variables/colors.scss';
 
+@keyframes gentle-drift {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-20px);
+    }
+  }
+
 .wrapper {
     display: flex;
     flex-direction: column;
@@ -50,6 +59,10 @@
 .itemTitle {
     font-weight: bold;
     margin-bottom: 8px;
+}
+
+.book {
+    display: none;
 }
 
 @include breakpoints(sm) {
@@ -143,6 +156,34 @@
 
         &:nth-child(3) {
             top: 850px;
+        }
+    }
+
+    .book {
+        display: block;
+        position: absolute;
+        animation: gentle-drift 2s ease-in-out infinite;
+        top: 100px;
+        left: 1%;
+
+        &:nth-of-type(2) {
+            top: 10px;
+            left: 40%;
+        }
+
+        &:nth-of-type(3) {
+            top: 350px;
+            left: 90%;
+        }
+
+        &:nth-of-type(4) {
+            top: 900px;
+            left: 20%;
+        }
+
+        &:nth-of-type(5) {
+            top: 700px;
+            left: 60%;
         }
     }
 }
