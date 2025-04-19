@@ -1,3 +1,7 @@
+@import "../../styles/mixins/breakpoints.scss";
+@import "../../styles/variables/fonts.scss";
+@import "../../styles/variables/colors.scss";
+
 .wrapper {
   display: flex;
   flex-direction: column;
@@ -5,4 +9,82 @@
   text-align: center;
   position: relative;
   overflow: hidden;
+}
+
+.background {
+  display: none;
+}
+
+.cat {
+  margin-right: 10px;
+}
+
+.caption {
+  position: absolute;
+  top: 9%;
+  font-size: 18px;
+  font-weight: bold;
+  max-width: 150px;
+  color: $color-blue;
+}
+
+.btn {
+  margin-top: 10px;
+  background-color: $color-blue;
+  padding: 20px 15px;
+  border: none;
+  font-size: 15px;
+  font-weight: bold;
+  color: $color-light-blue;
+  border-radius: 60px;
+  transition: background-color 0.4s;
+}
+
+.btn:hover {
+  background-color: $color-dark-blue;
+}
+
+@include breakpoints(sm) {
+  .cat {
+    display: none;
+  }
+
+  .background {
+    display: block;
+  }
+
+  .caption {
+    top: 20%;
+    font-size: 20px;
+  }
+
+  .btn {
+    font-size: 20px;
+  }
+}
+
+@include breakpoints(xl) {
+  .caption {
+    top: 32%;
+    font-size: 30px;
+    max-width: 250px;
+  }
+
+  .btn {
+    font-size: 30px;
+    padding: 30px 20px;
+  }
+}
+
+@include breakpoints(xxl) {
+  .caption {
+    top: 32%;
+    font-size: 50px;
+    max-width: 400px;
+  }
+
+  .btn {
+    font-size: 50px;
+    padding: 30px 20px;
+  }
 }
