@@ -19,6 +19,21 @@
   margin-right: 10px;
 }
 
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.headerText {
+  text-decoration: underline;
+}
+
+.star {
+  display: none;
+}
+
 .caption {
   position: absolute;
   top: 9%;
@@ -44,7 +59,44 @@
   background-color: $color-dark-blue;
 }
 
+.videoOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1000;
+  background: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.video {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  z-index: 1000;
+  transition: opacity 0.5s ease-in-out;
+}
+
 @include breakpoints(sm) {
+  .headerText {
+    text-decoration: none;
+  }
+
+  .star {
+    width: 200px;
+    object-fit: contain;
+    display: block;
+  }
+
+  .video {
+    object-fit: cover;
+  }
   .cat {
     display: none;
   }
@@ -64,6 +116,10 @@
 }
 
 @include breakpoints(xl) {
+  .star {
+    min-width: 100px;
+    object-fit: contain;
+  }
   .caption {
     top: 32%;
     font-size: 30px;
@@ -77,6 +133,9 @@
 }
 
 @include breakpoints(xxl) {
+  .star {
+    min-width: 400px;
+  }
   .caption {
     top: 32%;
     font-size: 50px;
