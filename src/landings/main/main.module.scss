@@ -1,0 +1,149 @@
+@import "../../styles/mixins/breakpoints.scss";
+@import "../../styles/variables/fonts.scss";
+@import "../../styles/variables/colors.scss";
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.background {
+  display: none;
+}
+
+.cat {
+  margin-right: 10px;
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.headerText {
+  text-decoration: underline;
+}
+
+.star {
+  display: none;
+}
+
+.caption {
+  position: absolute;
+  top: 9%;
+  font-size: 18px;
+  font-weight: bold;
+  max-width: 150px;
+  color: $color-blue;
+}
+
+.btn {
+  margin-top: 10px;
+  background-color: $color-blue;
+  padding: 20px 15px;
+  border: none;
+  font-size: 15px;
+  font-weight: bold;
+  color: $color-light-blue;
+  border-radius: 60px;
+  transition: background-color 0.4s;
+}
+
+.btn:hover {
+  background-color: $color-dark-blue;
+}
+
+.videoOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1000;
+  background: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.video {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  z-index: 1000;
+  transition: opacity 0.5s ease-in-out;
+}
+
+@include breakpoints(sm) {
+  .headerText {
+    text-decoration: none;
+  }
+
+  .star {
+    width: 200px;
+    object-fit: contain;
+    display: block;
+  }
+
+  .video {
+    object-fit: cover;
+  }
+  .cat {
+    display: none;
+  }
+
+  .background {
+    display: block;
+  }
+
+  .caption {
+    top: 20%;
+    font-size: 20px;
+  }
+
+  .btn {
+    font-size: 20px;
+  }
+}
+
+@include breakpoints(xl) {
+  .star {
+    min-width: 100px;
+    object-fit: contain;
+  }
+  .caption {
+    top: 32%;
+    font-size: 30px;
+    max-width: 250px;
+  }
+
+  .btn {
+    font-size: 30px;
+    padding: 30px 20px;
+  }
+}
+
+@include breakpoints(xxl) {
+  .star {
+    min-width: 400px;
+  }
+  .caption {
+    top: 32%;
+    font-size: 50px;
+    max-width: 400px;
+  }
+
+  .btn {
+    font-size: 50px;
+    padding: 30px 20px;
+  }
+}

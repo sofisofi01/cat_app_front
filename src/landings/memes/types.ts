@@ -1,3 +1,3 @@
-export type MainProps= {
-    
-}
+export type MainProps = {
+  title: string;
+};

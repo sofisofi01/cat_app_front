@@ -12,6 +12,7 @@
     "lint:fix": "eslint --fix --ext .js,.jsx,.ts,.tsx ."
   },
   "dependencies": {
+    "axios": "^1.8.4",
     "classname": "^0.0.0",
     "classnames": "^2.5.1",
     "next": "15.2.4",
@@ -20,6 +21,7 @@
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.0.0",
+    "@types/axios": "^0.14.4",
     "@types/node": "^20.11.0",
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",
