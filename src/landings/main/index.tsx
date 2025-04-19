@@ -51,7 +51,6 @@ export function MainPage({ caption, btnText, background, cat }: MainProps) {
             ref={videoRef}
             className={`${styles.video} ${styles.hidden}`}
             playsInline
-            muted
             onEnded={() => videoRef.current?.classList.add(styles.hidden)}
           >
             <source src="/images/main/cat.mp4" type="video/mp4" />
@@ -80,7 +79,7 @@ export function MainPage({ caption, btnText, background, cat }: MainProps) {
         </div>
 
         <div className={styles.predictionText}>
-          {prediction?.text || "Не удалось загрузить предсказание"}
+          {prediction?.text || "Будущее для тебя туманно :( "}
         </div>
       </Popup>
     </div>
