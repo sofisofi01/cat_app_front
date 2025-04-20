@@ -12,3 +12,16 @@ export type ApiResponse<T> = {
   total_pages: number;
   current_page: number;
 };
+
+export type Comment = {
+  id: number;
+  prediction_id: number;
+  text: string;
+  created_at: string;
+};
+
+export type Image = {
+  id: number;
+  url: string;
+  description?: string;
+};
