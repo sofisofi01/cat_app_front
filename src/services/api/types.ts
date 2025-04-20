@@ -8,8 +8,7 @@ export type Prediction = {
 };
 
 export type ApiResponse<T> = {
-  count?: number;
-  next?: string;
-  previous?: string;
-  results: T[];
+  predictions: T[];
+  total_pages: number;
+  current_page: number;
 };
