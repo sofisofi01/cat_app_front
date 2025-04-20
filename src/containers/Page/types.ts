@@ -1,4 +1,5 @@
-import { PropsWithChildren } from 'react';
-/* eslint-disable @typescript-eslint/no-explicit-any */
+import { PropsWithChildren } from "react";
+
 export type PageProps = PropsWithChildren<{
+  id?: string;
 }>;
