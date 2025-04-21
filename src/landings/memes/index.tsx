@@ -9,6 +9,7 @@ import book2 from "./assets/book2.svg";
 import book3 from "./assets/book3.svg";
 import book4 from "./assets/book4.svg";
 import book5 from "./assets/book5.svg";
+import book6 from "./assets/book6.svg";
 
 interface MemeItem {
   id: number;
@@ -67,6 +68,7 @@ export const MemesPage = ({ title, memes }: MemesPageProps) => {
       <Image className={styles.book} {...book3} />
       <Image className={styles.book} {...book4} />
       <Image className={styles.book} {...book5} />
+      <Image className={styles.book} {...book6} />
     </div>
   );
 };
