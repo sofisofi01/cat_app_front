@@ -9,12 +9,17 @@ export const MemesPage = ({ title, memes }: MemesPageProps) => {
       <div className={styles.grid}>
         {memes.map((meme) => (
           <div key={meme.id} className={styles.card}>
-            <img src={meme.image} alt={meme.title} className={styles.image} />
+            <img
+              src={meme.image}
+              alt={meme.title}
+              className={styles.image}
+              loading="lazy"
+            />
             <div className={styles.info}>
               <h3 className={styles.memeTitle}>{meme.title}</h3>
               <div className={styles.stats}>
                 <span>❤️ {meme.likes}</span>
-                <span>💬 {meme.comments}</span>
+                {meme.comments && <span>💬 {meme.comments}</span>}
               </div>
             </div>
           </div>
