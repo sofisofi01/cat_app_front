@@ -11,6 +11,7 @@ import book4 from "./assets/book4.svg";
 import book5 from "./assets/book5.svg";
 import book6 from "./assets/book6.svg";
 import { ExtraHeader } from "@/components/ExtraHeader";
+import { useState } from "react";
 
 interface MemeItem {
   id: number;
@@ -24,6 +25,12 @@ interface MemesPageProps {
 }
 
 export const MemesPage = ({ title, memes }: MemesPageProps) => {
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const filteredMemes = memes.filter((meme) =>
+    meme.title.toLowerCase().includes(searchQuery.toLowerCase()),
+  );
+
   return (
     <div className={styles.wrapper}>
       <div className={styles.uploadSection}>
@@ -48,11 +55,19 @@ export const MemesPage = ({ title, memes }: MemesPageProps) => {
 
       <h1 className={styles.title}>{title}</h1>
 
-      {!memes || memes.length === 0 ? (
+      <input
+        type="text"
+        className={styles.searchInput}
+        placeholder="Поиск по названию..."
+        value={searchQuery}
+        onChange={(e) => setSearchQuery(e.target.value)}
+      />
+
+      {!filteredMemes || filteredMemes.length === 0 ? (
         <p className={styles.emptyMessage}>Мемы не найдены</p>
       ) : (
         <div className={styles.grid}>
-          {memes.map((meme) => (
+          {filteredMemes.map((meme) => (
             <img
               key={meme.id}
               src={meme.image}
@@ -63,6 +78,7 @@ export const MemesPage = ({ title, memes }: MemesPageProps) => {
           ))}
         </div>
       )}
+
       <Image className={styles.book} {...book1} />
       <Image className={styles.book} {...book2} />
       <Image className={styles.book} {...book3} />

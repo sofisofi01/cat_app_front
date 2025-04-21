@@ -3,12 +3,16 @@
 @import "../../styles/variables/colors.scss";
 
 .wrapper {
-  padding: 20px;
-  max-width: 1400px;
-  margin: 0 auto;
   display: flex;
   flex-direction: column;
-  gap: 40px;
+  align-items: center; /* Центрируем по горизонтали */
+  min-height: 100vh; /* Занимаем всю высоту экрана */
+  position: relative;
+  padding: 20px;
+  width: 100%;
+  max-width: 2000px;
+  margin: 0 auto;
+  box-sizing: border-box;
 }
 
 /* Секция загрузки */
@@ -76,8 +80,14 @@
 
 .grid {
   display: grid;
-  gap: 25px;
+  justify-content: center;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 25px;
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 20px;
+  margin-top: 50px;
 }
 
 .image {
@@ -97,6 +107,20 @@
   color: #666;
   margin-top: 50px;
   font-size: 1.2rem;
+}
+.searchInput {
+  width: 100%;
+  max-width: 500px;
+  margin: 30px auto 10px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  border: 2px solid #c1e3ed;
+  border-radius: 8px;
+  outline: none;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  color: #333;
+  background: #fff;
+  display: block;
 }
 
 .book {
@@ -218,7 +242,7 @@
   }
 }
 
-@media (max-width: 1800px) {
+@media (max-width: 1990px) {
   .book {
     display: none;
   }
