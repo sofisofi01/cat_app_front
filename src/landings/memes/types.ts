@@ -1,9 +1,7 @@
 export interface MemeItem {
   id: number;
   title?: string; // Может приходить как description или tag
-  image: string; // URL картинки
-  likes: number;
-  comments?: number; // Опционально, если есть в API
+  image: string; 
 }
 
 export interface MemesPageProps {

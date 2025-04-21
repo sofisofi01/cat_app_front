@@ -33,5 +33,9 @@ const nextConfig: NextConfig = {
   reactStrictMode: true,
   swcMinify: true,
 };
-
+module.exports = {
+  images: {
+    domains: ['sofisofi01.pythonanywhere.com'],
+  },
+}
 export default nextConfig;

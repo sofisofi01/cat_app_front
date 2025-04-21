@@ -1,15 +1,30 @@
+// app/memes/page.tsx
 import { MemesPage } from "@/landings/memes";
 import { ImageService } from "@/services/api/image";
 
 export default async function Memes() {
-  // Получаем данные с бэкенда
-  const response = await ImageService.getAll();
-  const memes = response.predictions.map((item) => ({
-    id: item.id,
-    title: item.tag || item.description || "Без названия",
-    image: item.url,
-    likes: item.likes || 0,
-  }));
+  try {
+    // Получаем данные из админки Django
+    const response = await ImageService.getAll();
+    
+    // Создаем массив мемов с правильными URL
+    const memes = Array.from({length: 11}, (_, i) => i + 3) // ID от 3 до 14
+      .map(id => ({
+        id,
+        title: `Мем ${id}`,
+        image: ImageService.getImageUrl(id)
+      }));
 
-  return <MemesPage title="Котомемы" memes={memes} />;
+    return <MemesPage 
+      title="Котомемы дня" 
+      memes={memes} 
+    />;
+    
+  } catch (error) {
+    console.error('Ошибка загрузки мемов:', error);
+    return <MemesPage 
+      title="Ошибка загрузки" 
+      memes={[]} 
+    />;
+  }
 }
