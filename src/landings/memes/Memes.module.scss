@@ -108,19 +108,46 @@
   margin-top: 50px;
   font-size: 1.2rem;
 }
-.searchInput {
-  width: 100%;
-  max-width: 500px;
-  margin: 30px auto 10px;
-  padding: 10px 20px;
-  font-size: 1rem;
-  border: 2px solid #c1e3ed;
+.filterSection {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  margin: 20px 0;
+  flex-wrap: wrap;
+  font-family: $font-family-secondary;
+  margin-left: 20px;
+}
+
+.selectInput {
+  padding: 10px;
+  font-size: 16px;
   border-radius: 8px;
-  outline: none;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  border: 1px solid #ccc;
+}
+
+.selectedTagsBox {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.selectedTag {
+  background-color: #eef;
   color: #333;
-  background: #fff;
-  display: block;
+  border-radius: 20px;
+  padding: 5px 10px;
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+}
+
+.removeTagButton {
+  background: none;
+  border: none;
+  color: #888;
+  font-size: 14px;
+  margin-left: 8px;
+  cursor: pointer;
 }
 
 .book {

@@ -17,6 +17,7 @@ interface MemeItem {
   id: number;
   title: string;
   image: string;
+  tag: string;
 }
 
 interface MemesPageProps {
@@ -25,11 +26,24 @@ interface MemesPageProps {
 }
 
 export const MemesPage = ({ title, memes }: MemesPageProps) => {
-  const [searchQuery, setSearchQuery] = useState("");
+  const [selectedTags, setSelectedTags] = useState<string[]>([]);
 
-  const filteredMemes = memes.filter((meme) =>
-    meme.title.toLowerCase().includes(searchQuery.toLowerCase()),
-  );
+  const allTags = Array.from(new Set(memes.map((meme) => meme.tag)));
+
+  const toggleTag = (tag: string) => {
+    setSelectedTags((prev) =>
+      prev.includes(tag) ? prev.filter((t) => t !== tag) : [...prev, tag],
+    );
+  };
+
+  const clearTag = (tag: string) => {
+    setSelectedTags((prev) => prev.filter((t) => t !== tag));
+  };
+
+  const filteredMemes =
+    selectedTags.length === 0
+      ? memes
+      : memes.filter((meme) => selectedTags.includes(meme.tag));
 
   return (
     <div className={styles.wrapper}>
@@ -55,15 +69,38 @@ export const MemesPage = ({ title, memes }: MemesPageProps) => {
 
       <h1 className={styles.title}>{title}</h1>
 
-      <input
-        type="text"
-        className={styles.searchInput}
-        placeholder="Поиск по названию..."
-        value={searchQuery}
-        onChange={(e) => setSearchQuery(e.target.value)}
-      />
+      <div className={styles.filterSection}>
+        <select
+          className={styles.selectInput}
+          onChange={(e) => {
+            if (e.target.value !== "") toggleTag(e.target.value);
+            e.target.selectedIndex = 0; // сброс обратно на первую строку
+          }}
+        >
+          <option value="">Выбери теги...</option>
+          {allTags.map((tag) => (
+            <option key={tag} value={tag} disabled={selectedTags.includes(tag)}>
+              {tag}
+            </option>
+          ))}
+        </select>
 
-      {!filteredMemes || filteredMemes.length === 0 ? (
+        <div className={styles.selectedTagsBox}>
+          {selectedTags.map((tag) => (
+            <span key={tag} className={styles.selectedTag}>
+              {tag}
+              <button
+                className={styles.removeTagButton}
+                onClick={() => clearTag(tag)}
+              >
+                ✕
+              </button>
+            </span>
+          ))}
+        </div>
+      </div>
+
+      {filteredMemes.length === 0 ? (
         <p className={styles.emptyMessage}>Мемы не найдены</p>
       ) : (
         <div className={styles.grid}>
