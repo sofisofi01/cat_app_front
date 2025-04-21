@@ -28,6 +28,8 @@ interface MemesPageProps {
 export const MemesPage = ({ title, memes }: MemesPageProps) => {
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [selectedMeme, setSelectedMeme] = useState<MemeItem | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const allTags = Array.from(new Set(memes.map((meme) => meme.tag)));
 
@@ -35,7 +37,7 @@ export const MemesPage = ({ title, memes }: MemesPageProps) => {
     setSelectedTags((prev) =>
       prev.includes(tag) ? prev.filter((t) => t !== tag) : [...prev, tag],
     );
-    setIsDropdownOpen(false); // Закрыть дропдаун после выбора тега
+    setIsDropdownOpen(false);
   };
 
   const clearTag = (tag: string) => {
@@ -46,6 +48,16 @@ export const MemesPage = ({ title, memes }: MemesPageProps) => {
     selectedTags.length === 0
       ? memes
       : memes.filter((meme) => selectedTags.includes(meme.tag));
+
+  const openModal = (meme: MemeItem) => {
+    setSelectedMeme(meme);
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setSelectedMeme(null);
+  };
 
   return (
     <div className={styles.wrapper}>
@@ -73,11 +85,10 @@ export const MemesPage = ({ title, memes }: MemesPageProps) => {
 
       <div className={styles.content}>
         <div className={styles.filterSection}>
-          {/* Кастомное выпадающее меню */}
           <div className={styles.dropdownContainer}>
             <input
               className={styles.selectInput}
-              value="Выбери теги..." // Всегда фиксированный текст
+              value="Выбери теги..."
               readOnly
               onClick={() => setIsDropdownOpen(!isDropdownOpen)}
             />
@@ -98,7 +109,6 @@ export const MemesPage = ({ title, memes }: MemesPageProps) => {
             )}
           </div>
 
-          {/* Выбранные теги (остаются под инпутом) */}
           <div className={styles.selectedTagsBox}>
             {selectedTags.map((tag) => (
               <span key={tag} className={styles.selectedTag}>
@@ -127,6 +137,7 @@ export const MemesPage = ({ title, memes }: MemesPageProps) => {
                 alt={meme.title}
                 className={styles.image}
                 loading="lazy"
+                onClick={() => openModal(meme)}
               />
             ))}
           </div>
@@ -142,6 +153,29 @@ export const MemesPage = ({ title, memes }: MemesPageProps) => {
       <Image className={styles.book} {...book4} />
       <Image className={styles.book} {...book5} />
       <Image className={styles.book} {...book6} />
+
+      {isModalOpen && selectedMeme && (
+        <div className={styles.modalOverlay} onClick={closeModal}>
+          <div
+            className={styles.modalContent}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button className={styles.closeButton} onClick={closeModal}>
+              ✕
+            </button>
+            <img
+              src={selectedMeme.image}
+              alt={selectedMeme.title}
+              className={styles.modalImage}
+            />
+            <div className={styles.modalInfo}>
+              <h2>{selectedMeme.title}</h2>
+              <p>{selectedMeme.tag}</p>
+            </div>
+          </div>
+        </div>
+      )}
+
       <ExtraHeader page={"memes"} />
     </div>
   );
