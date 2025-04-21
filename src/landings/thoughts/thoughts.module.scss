@@ -1,0 +1,102 @@
+@import "../../styles/mixins/breakpoints.scss";
+@import "../../styles/variables/fonts.scss";
+@import "../../styles/variables/colors.scss";
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.predictionsList {
+  background-color: $color-background;
+  border-radius: 30px;
+  display: flex;
+  flex-direction: column;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+}
+
+.item {
+  width: 90%;
+}
+
+.meta {
+  background-color: $color-blue-tab;
+  border-radius: 30px;
+  font-size: 20px;
+  font-family: $font-family-secondary;
+  padding: 35px;
+  text-align: start;
+}
+
+.text {
+  color: $color-blue;
+}
+
+.tag {
+  font-size: 16px;
+  color: $color-light-blue;
+}
+
+.image {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 10px;
+}
+
+.loadMoreButton {
+  background: transparent;
+  border: none;
+  transition: filter 0.3s ease;
+}
+
+.loadMoreButton:hover {
+  filter: brightness(0.2);
+}
+
+.commentSection {
+  display: flex;
+  flex-direction: row;
+  margin-top: 30px;
+  justify-self: center;
+  color: $color-blue;
+  font-size: 16px;
+}
+
+.label {
+  text-decoration: underline;
+  margin-right: 16px;
+  transition: color 0.2s;
+  cursor: pointer;
+}
+
+.label:hover {
+  color: $color-dark-blue;
+}
+
+.heart {
+  height: 28px;
+  width: 28px;
+  transition: filter 0.3s ease;
+  cursor: pointer;
+}
+
+.heart:hover {
+  filter: brightness(0.2);
+}
+
+.likes {
+  display: flex;
+  flex-direction: row;
+  font-style: bold;
+}

@@ -8,8 +8,22 @@ export type Prediction = {
 };
 
 export type ApiResponse<T> = {
-  count?: number;
-  next?: string;
-  previous?: string;
-  results: T[];
+  predictions: T[];
+  total_pages: number;
+  current_page: number;
+};
+
+export type Comment = {
+  id: number;
+  prediction_id: number;
+  author: string;
+  text: string;
+  created_at: string;
+};
+
+export type Image = {
+  tag?: string;
+  id: number;
+  url: string;
+  description?: string;
 };
