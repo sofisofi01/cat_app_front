@@ -3,7 +3,12 @@ import styles from "./Memes.module.scss";
 import Link from "next/link";
 import plusIcon from "./assets/plus.svg";
 import Image from "next/image";
-import dividerImg from "./assets/divide.svg";
+import dividerImg from "./assets/divide (1).svg";
+import book1 from "./assets/book1.svg";
+import book2 from "./assets/book2.svg";
+import book3 from "./assets/book3.svg";
+import book4 from "./assets/book4.svg";
+import book5 from "./assets/book5.svg";
 
 interface MemeItem {
   id: number;
@@ -57,6 +62,11 @@ export const MemesPage = ({ title, memes }: MemesPageProps) => {
           ))}
         </div>
       )}
+      <Image className={styles.book} {...book1} />
+      <Image className={styles.book} {...book2} />
+      <Image className={styles.book} {...book3} />
+      <Image className={styles.book} {...book4} />
+      <Image className={styles.book} {...book5} />
     </div>
   );
 };
