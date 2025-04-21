@@ -7,11 +7,11 @@ export type Prediction = {
   avatar?: string;
 };
 
-export interface ApiResponse<T> {
-  images: T[];
-  total_pages?: number;
-  current_page?: number;
-}
+export type ApiResponse<T> = {
+  predictions: T[];
+  total_pages: number;
+  current_page: number;
+};
 
 export type Comment = {
   id: number;
@@ -21,10 +21,9 @@ export type Comment = {
   created_at: string;
 };
 
-export interface Image {
-  id: number;
-  name: string;
-  image: string;
-  uploaded_at?: string;
+export type Image = {
   tag?: string;
-}
+  id: number;
+  url: string;
+  description?: string;
+};
