@@ -1,0 +1,66 @@
+@import "../../styles/variables/colors.scss";
+@import "../../styles/mixins/breakpoints.scss";
+
+.wrapper {
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.title {
+  font-size: 2rem;
+  color: $color-blue;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.grid {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+}
+
+.card {
+  border: 1px solid #eee;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: transform 0.3s;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  }
+}
+
+.image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.info {
+  padding: 15px;
+}
+
+.memeTitle {
+  font-size: 1.1rem;
+  margin-bottom: 10px;
+}
+
+.stats {
+  display: flex;
+  gap: 15px;
+  color: #808080;
+}
+
+@include breakpoints(sm) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@include breakpoints(lg) {
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
