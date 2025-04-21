@@ -27,6 +27,7 @@ interface MemesPageProps {
 
 export const MemesPage = ({ title, memes }: MemesPageProps) => {
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   const allTags = Array.from(new Set(memes.map((meme) => meme.tag)));
 
@@ -34,6 +35,7 @@ export const MemesPage = ({ title, memes }: MemesPageProps) => {
     setSelectedTags((prev) =>
       prev.includes(tag) ? prev.filter((t) => t !== tag) : [...prev, tag],
     );
+    setIsDropdownOpen(false); // Закрыть дропдаун после выбора тега
   };
 
   const clearTag = (tag: string) => {
@@ -69,51 +71,69 @@ export const MemesPage = ({ title, memes }: MemesPageProps) => {
 
       <h1 className={styles.title}>{title}</h1>
 
-      <div className={styles.filterSection}>
-        <select
-          className={styles.selectInput}
-          onChange={(e) => {
-            if (e.target.value !== "") toggleTag(e.target.value);
-            e.target.selectedIndex = 0; // сброс обратно на первую строку
-          }}
-        >
-          <option value="">Выбери теги...</option>
-          {allTags.map((tag) => (
-            <option key={tag} value={tag} disabled={selectedTags.includes(tag)}>
-              {tag}
-            </option>
-          ))}
-        </select>
+      <div className={styles.content}>
+        <div className={styles.filterSection}>
+          {/* Кастомное выпадающее меню */}
+          <div className={styles.dropdownContainer}>
+            <input
+              className={styles.selectInput}
+              value="Выбери теги..." // Всегда фиксированный текст
+              readOnly
+              onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+            />
+            {isDropdownOpen && (
+              <div className={styles.dropdownMenu}>
+                {allTags.map((tag) => (
+                  <div
+                    key={tag}
+                    className={`${styles.dropdownItem} ${
+                      selectedTags.includes(tag) ? styles.active : ""
+                    }`}
+                    onClick={() => toggleTag(tag)}
+                  >
+                    {tag}
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
 
-        <div className={styles.selectedTagsBox}>
-          {selectedTags.map((tag) => (
-            <span key={tag} className={styles.selectedTag}>
-              {tag}
-              <button
-                className={styles.removeTagButton}
-                onClick={() => clearTag(tag)}
-              >
-                ✕
-              </button>
-            </span>
-          ))}
+          {/* Выбранные теги (остаются под инпутом) */}
+          <div className={styles.selectedTagsBox}>
+            {selectedTags.map((tag) => (
+              <span key={tag} className={styles.selectedTag}>
+                {tag}
+                <button
+                  className={styles.removeTagButton}
+                  onClick={() => clearTag(tag)}
+                >
+                  ✕
+                </button>
+              </span>
+            ))}
+          </div>
         </div>
       </div>
 
       {filteredMemes.length === 0 ? (
         <p className={styles.emptyMessage}>Мемы не найдены</p>
       ) : (
-        <div className={styles.grid}>
-          {filteredMemes.map((meme) => (
-            <img
-              key={meme.id}
-              src={meme.image}
-              alt={meme.title}
-              className={styles.image}
-              loading="lazy"
-            />
-          ))}
-        </div>
+        <>
+          <div className={styles.grid}>
+            {filteredMemes.map((meme) => (
+              <img
+                key={meme.id}
+                src={meme.image}
+                alt={meme.title}
+                className={styles.image}
+                loading="lazy"
+              />
+            ))}
+          </div>
+          <div className={styles.showMoreContainer}>
+            <span className={styles.showMoreArrow}></span>
+          </div>
+        </>
       )}
 
       <Image className={styles.book} {...book1} />
