@@ -1,3 +1,7 @@
+@import "../../styles/mixins/breakpoints.scss";
+@import "../../styles/variables/fonts.scss";
+@import "../../styles/variables/colors.scss";
+
 .wrapper {
   padding: 20px;
   max-width: 1400px;
@@ -216,6 +220,88 @@
 
 @media (max-width: 1800px) {
   .book {
+    display: none;
+  }
+}
+
+.menuContainer {
+  margin-top: 60px;
+  display: flex;
+  justify-content: center; /* Горизонтальное выравнивание */
+  align-items: center; /* Вертикальное выравнивание */
+  width: 100%;
+  padding: 20px 0;
+  background-color: white;
+}
+
+.menuList {
+  display: flex;
+  flex-direction: row; /* Выстраиваем ссылки в ряд */
+  justify-content: center; /* Горизонтально по центру */
+  align-items: center; /* Вертикально по центру */
+  gap: 50px; /* Отступы между элементами */
+  list-style: none;
+  padding-left: 0;
+  font-size: 24px;
+  font-weight: bold;
+  color: $color-blue;
+}
+
+.menuLink {
+  color: $color-blue;
+  transition: 0.2s;
+
+  &.active {
+    padding: 8px;
+    border-radius: 30px;
+    background-color: $color-blue-tab;
+  }
+}
+
+.menuLink:hover {
+  color: $color-dark-blue;
+}
+
+.menuItem {
+  color: $color-blue;
+}
+
+@include breakpoints(sm) {
+  .menuContainer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    padding: 20px 0;
+    background-color: white;
+  }
+
+  .menuList {
+    flex-direction: row;
+    gap: 50px;
+  }
+
+  .menuLink {
+    max-width: 170px;
+  }
+}
+
+/* Для экранов меньше 1400px */
+@media (max-width: 1400px) {
+  .menuContainer {
+    justify-content: center; /* Центрируем контейнер */
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .menuList {
+    justify-content: center; /* Центрируем список ссылок */
+    width: 100%; /* Убираем ограничения по ширине */
+  }
+}
+
+@include breakpoints(xl) {
+  .menuContainer {
     display: none;
   }
 }

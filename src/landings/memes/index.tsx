@@ -3,13 +3,14 @@ import styles from "./Memes.module.scss";
 import Link from "next/link";
 import plusIcon from "./assets/plus.svg";
 import Image from "next/image";
-import dividerImg from "./assets/divide (1).svg";
+import dividerImg from "./assets/divide.svg";
 import book1 from "./assets/book1.svg";
 import book2 from "./assets/book2.svg";
 import book3 from "./assets/book3.svg";
 import book4 from "./assets/book4.svg";
 import book5 from "./assets/book5.svg";
 import book6 from "./assets/book6.svg";
+import { ExtraHeader } from "@/components/ExtraHeader";
 
 interface MemeItem {
   id: number;
@@ -36,12 +37,11 @@ export const MemesPage = ({ title, memes }: MemesPageProps) => {
           />
         </Link>
         <p className={styles.uploadTitle}>Загрузи свой мем!</p>
-        {/* Заменяем div на Image для разделителя */}
         <Image
           src={dividerImg}
           alt=""
           className={styles.divider}
-          width={800} // Укажите реальные размеры
+          width={800}
           height={2}
         />
       </div>
@@ -69,6 +69,7 @@ export const MemesPage = ({ title, memes }: MemesPageProps) => {
       <Image className={styles.book} {...book4} />
       <Image className={styles.book} {...book5} />
       <Image className={styles.book} {...book6} />
+      <ExtraHeader page={"memes"} />
     </div>
   );
 };
