@@ -34,6 +34,7 @@ export const useComments = (predictionId: number | null) => {
       setIsLoading(true);
       const newComment = await CommentService.add(predictionId, text, username);
       window.location.reload();
+      await new Promise((resolve) => setTimeout(resolve, 2000));
       setComments((prev) => [newComment, ...prev]);
     } catch (err) {
       console.error("Failed to add comment:", err);
