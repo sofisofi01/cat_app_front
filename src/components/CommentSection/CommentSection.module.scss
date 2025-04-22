@@ -1,0 +1,122 @@
+@import "../../styles/mixins/breakpoints.scss";
+@import "../../styles/variables/fonts.scss";
+@import "../../styles/variables/colors.scss";
+
+.list {
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  gap: 20px;
+}
+
+.comment {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  width: 100%;
+  margin: 0 auto;
+  border-radius: 30px;
+  background-color: $color-background;
+  padding: 15px;
+  font-size: 20px;
+}
+
+.username {
+  font-family: $font-family;
+  font-weight: bold;
+}
+
+.form {
+  border-radius: 30px;
+  background-color: $color-background;
+  padding: 15px;
+  width: 100%;
+  margin: 0 auto;
+  border-radius: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.input {
+  border: 1px solid $color-blue;
+  border-radius: 30px;
+  background-color: $color-input-background;
+  display: flex;
+  align-self: center;
+  justify-content: center;
+  text-align: center;
+  min-height: 40px;
+}
+
+.fields {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin: 0 auto;
+}
+
+.commInput {
+  min-height: 130px;
+}
+
+.button {
+  border: none;
+  height: 45px;
+  background-color: $color-blue;
+  border-radius: 30px;
+  color: $color-light-blue;
+  font-family: $font-family;
+  font-size: 20px;
+  font-weight: bold;
+  transition: background-color 0.4s;
+
+  &:hover {
+    background-color: $color-dark-blue;
+  }
+}
+
+@include breakpoints(sm) {
+  .wrapper {
+    width: 100%;
+  }
+  .comment {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+  }
+
+  .form {
+    padding: 30px;
+  }
+
+  .fields {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 121px 1fr;
+  }
+
+  .button {
+    width: 60%;
+    align-self: center;
+  }
+}
+
+@include breakpoints(xl) {
+  .comment {
+    padding: 20px;
+  }
+
+  .input {
+    min-height: 45px;
+    font-size: 24px;
+  }
+  .commInput {
+    min-height: 45px;
+    font-size: 24px;
+  }
+
+  .button {
+    width: 40%;
+  }
+}
