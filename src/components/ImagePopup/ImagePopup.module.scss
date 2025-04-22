@@ -1,0 +1,122 @@
+@import "../../styles/mixins/breakpoints.scss";
+@import "../../styles/variables/fonts.scss";
+@import "../../styles/variables/colors.scss";
+
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: $color-modaloverlay-back;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  overflow: hidden;
+}
+
+.modalContent {
+  position: relative;
+  width: 80vw;
+  max-width: 1000px;
+  max-height: 80vh;
+  background: transparent;
+  border-radius: 16px;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.modalImageWrapper {
+  position: relative;
+  width: 100%;
+  height: auto;
+  max-height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 12px;
+  overflow: hidden;
+  background: transparent;
+}
+
+.modalImage {
+  width: 100%;
+  height: auto;
+  max-height: 80vh;
+  object-fit: contain;
+  display: block;
+  border-radius: 0;
+}
+
+.modalImageWrapper::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 0;
+  background: none;
+  z-index: 1;
+  pointer-events: none;
+  border-radius: 0 0 12px 12px;
+}
+
+.modalInfo {
+  position: absolute;
+  bottom: 12px;
+  left: 20px;
+  right: 20px;
+  color: white;
+  font-family: $font-family-secondary;
+  z-index: 2;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 25px;
+  margin-left: 40px;
+  margin-bottom: 20px;
+  text-shadow:
+    1px 1px 2px $color-blue,
+    0 0 4px $color-blue-shadow;
+}
+
+.modalTitle {
+  font-size: 36px;
+  margin: 0;
+  line-height: 1;
+  padding-top: 2px;
+}
+
+.modalTag {
+  font-size: 26px;
+  margin: 0;
+  opacity: 0.9;
+  margin-left: 50px;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+
+  &::before {
+    content: "#";
+    margin-right: 4px;
+    display: inline-flex;
+    align-items: center;
+  }
+}
+.closeBtn {
+  position: absolute;
+  top: -10px; 
+  right: -10px; 
+  background: none;
+  border: none;
+  font-size: 50px;
+  cursor: pointer;
+  padding: 8px; 
+  color: $color-light-blue; 
+  z-index: 10; 
+  line-height: 1; 
+}

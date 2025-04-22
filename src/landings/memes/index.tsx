@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import Link from "next/link";
-
+import { ImagePopup } from '@/components/ImagePopup'; 
 import { Image } from '@/components/Image';
 import styles from "./Memes.module.scss";
 import plusIcon from "./assets/plus.svg";
@@ -18,12 +18,11 @@ import { ExtraHeader } from "@/components/ExtraHeader";
 import type { MemeItem, MemesPageProps } from "./types";
 
 export const MemesPage = ({ memes }: MemesPageProps) => {
-  const [selectedTags, setSelectedTags] = useState<string[]>([]);
-  const [selectedMeme, setSelectedMeme] = useState<MemeItem | null>(null);
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedTags, setSelectedTags] = useState<string[]>([]); 
+  const [selectedMeme, setSelectedMeme] = useState<MemeItem | null>(null); 
+  const [isModalOpen, setIsModalOpen] = useState(false); 
 
-  const allTags = Array.from(new Set(memes.map((meme) => meme.tag)));
-
+  const allTags = Array.from(new Set(memes.map((meme) => meme.tag))); 
   const toggleTag = (tag: string) => {
     setSelectedTags((prev) =>
       prev.includes(tag) ? prev.filter((t) => t !== tag) : [...prev, tag]
@@ -54,7 +53,7 @@ export const MemesPage = ({ memes }: MemesPageProps) => {
       <div className={styles.uploadSection}>
         <Link href="/upload">
           <Image
-            src={plusIcon.src} 
+            src={plusIcon.src}
             alt="Добавить мем"
             className={styles.uploadIcon}
             width={50}
@@ -74,9 +73,9 @@ export const MemesPage = ({ memes }: MemesPageProps) => {
       <div className={styles.content}>
         <div className={styles.filterSection}>
           <Dropdown
-            allTags={allTags}
-            selectedTags={selectedTags}
-            toggleTag={toggleTag}
+            allTags={allTags} 
+            selectedTags={selectedTags} 
+            toggleTag={toggleTag} 
           />
         </div>
       </div>
@@ -92,7 +91,7 @@ export const MemesPage = ({ memes }: MemesPageProps) => {
               alt={meme.title}
               className={styles.image}
               loading="lazy"
-              onClick={() => openModal(meme)}
+              onClick={() => openModal(meme)} 
             />
           ))}
         </div>
@@ -101,34 +100,20 @@ export const MemesPage = ({ memes }: MemesPageProps) => {
       {[book1, book2, book3, book4, book5, book6].map((book, index) => (
         <Image
           key={index}
-          src={book.src} 
+          src={book.src}
           alt={`book-${index + 1}`}
           className={styles.book}
         />
       ))}
 
       {isModalOpen && selectedMeme && (
-        <div className={styles.modalOverlay} onClick={closeModal}>
-          <div
-            className={styles.modalContent}
-            onClick={(e) => e.stopPropagation()}
-          >
-            <button className={styles.closeButton} onClick={closeModal}>
-              ✕
-            </button>
-            <Image
-              src={selectedMeme.image}
-              alt={selectedMeme.title}
-              className={styles.modalImage}
-              width={800}
-              height={600}
-            />
-            <div className={styles.modalInfo}>
-              <h2 className={styles.modalTitle}>{selectedMeme.title}</h2>
-              <p className={styles.modalTag}>{selectedMeme.tag}</p>
-            </div>
-          </div>
-        </div>
+        <ImagePopup
+          isOpen={isModalOpen}
+          onClose={closeModal}
+          imageSrc={selectedMeme.image} 
+          imageAlt={selectedMeme.title}  
+          tag={selectedMeme.tag}         
+        />
       )}
 
       <button className={styles.loadMoreButton}>
