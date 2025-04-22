@@ -6,7 +6,5 @@ export interface MemeItem {
 }
 
 export interface MemesPageProps {
-  title: string;
   memes: MemeItem[];
-  uploadTitle: string;
 }

@@ -147,5 +147,5 @@ export const data = {
       title: "Сонный котик",
       image: "https://sofisofi01.pythonanywhere.com/uploads/meme5.png",
     },
-  ],
+  ].map((meme) => ({ ...meme, id: Number(meme.id) })),
 };

@@ -17,35 +17,7 @@ import { Dropdown } from "@/components/Dropdown";
 import { ExtraHeader } from "@/components/ExtraHeader";
 import type { MemeItem, MemesPageProps } from "./types";
 
-interface UploadSectionProps {
-  uploadTitle: string;
-}
-
-const UploadSection = ({ uploadTitle }: UploadSectionProps) => {
-  return (
-    <div className={styles.uploadSection}>
-      <Link href="/upload">
-        <Image
-          src={plusIcon.src} 
-          alt="Добавить мем"
-          className={styles.uploadIcon}
-          width={50}
-          height={50}
-        />
-      </Link>
-      <p className={styles.uploadTitle}>{uploadTitle || "Загрузи свой мем!"}</p>
-      <Image
-        src={dividerImg.src}
-        alt=""
-        className={styles.divider}
-        width={800}
-        height={2}
-      />
-    </div>
-  );
-};
-
-export const MemesPage = ({ title, memes, uploadTitle }: MemesPageProps) => {
+export const MemesPage = ({ memes }: MemesPageProps) => {
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
   const [selectedMeme, setSelectedMeme] = useState<MemeItem | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -79,8 +51,25 @@ export const MemesPage = ({ title, memes, uploadTitle }: MemesPageProps) => {
 
   return (
     <div className={styles.wrapper}>
-      <UploadSection uploadTitle={uploadTitle} />
-      <h1 className={styles.title}>{title}</h1>
+      <div className={styles.uploadSection}>
+        <Link href="/upload">
+          <Image
+            src={plusIcon.src} 
+            alt="Добавить мем"
+            className={styles.uploadIcon}
+            width={50}
+            height={50}
+          />
+        </Link>
+        <p className={styles.uploadTitle}>Загрузи свой мем!</p>
+        <Image
+          src={dividerImg.src}
+          alt=""
+          className={styles.divider}
+          width={800}
+          height={2}
+        />
+      </div>
 
       <div className={styles.content}>
         <div className={styles.filterSection}>
