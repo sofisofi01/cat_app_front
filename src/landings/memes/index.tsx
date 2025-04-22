@@ -1,9 +1,8 @@
 "use client";
-
 import { useState } from "react";
 import Link from "next/link";
-import Image from "next/image";
 
+import { Image } from '@/components/Image';
 import styles from "./Memes.module.scss";
 import plusIcon from "./assets/plus.svg";
 import dividerImg from "./assets/divide.svg";
@@ -13,7 +12,8 @@ import book3 from "./assets/book3.svg";
 import book4 from "./assets/book4.svg";
 import book5 from "./assets/book5.svg";
 import book6 from "./assets/book6.svg";
-
+import arrow from "./assets/chevron-down.png";
+import { Dropdown } from "@/components/Dropdown";
 import { ExtraHeader } from "@/components/ExtraHeader";
 import type { MemeItem, MemesPageProps } from "./types";
 
@@ -26,17 +26,16 @@ const UploadSection = ({ uploadTitle }: UploadSectionProps) => {
     <div className={styles.uploadSection}>
       <Link href="/upload">
         <Image
-          src={plusIcon}
+          src={plusIcon.src} 
           alt="Добавить мем"
           className={styles.uploadIcon}
           width={50}
           height={50}
         />
       </Link>
-      <p className={styles.uploadTitle}>{uploadTitle || "Загрузи свой мем!"}</p>{" "}
-      {}
+      <p className={styles.uploadTitle}>{uploadTitle || "Загрузи свой мем!"}</p>
       <Image
-        src={dividerImg}
+        src={dividerImg.src}
         alt=""
         className={styles.divider}
         width={800}
@@ -48,7 +47,6 @@ const UploadSection = ({ uploadTitle }: UploadSectionProps) => {
 
 export const MemesPage = ({ title, memes, uploadTitle }: MemesPageProps) => {
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [selectedMeme, setSelectedMeme] = useState<MemeItem | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -56,9 +54,8 @@ export const MemesPage = ({ title, memes, uploadTitle }: MemesPageProps) => {
 
   const toggleTag = (tag: string) => {
     setSelectedTags((prev) =>
-      prev.includes(tag) ? prev.filter((t) => t !== tag) : [...prev, tag],
+      prev.includes(tag) ? prev.filter((t) => t !== tag) : [...prev, tag]
     );
-    setIsDropdownOpen(false);
   };
 
   const clearTag = (tag: string) => {
@@ -82,55 +79,25 @@ export const MemesPage = ({ title, memes, uploadTitle }: MemesPageProps) => {
 
   return (
     <div className={styles.wrapper}>
-      <UploadSection uploadTitle={uploadTitle} /> {}
+      <UploadSection uploadTitle={uploadTitle} />
       <h1 className={styles.title}>{title}</h1>
+
       <div className={styles.content}>
         <div className={styles.filterSection}>
-          <div className={styles.dropdownContainer}>
-            <input
-              className={styles.selectInput}
-              value="Выбери теги..."
-              readOnly
-              onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-            />
-            {isDropdownOpen && (
-              <div className={styles.dropdownMenu}>
-                {allTags.map((tag) => (
-                  <div
-                    key={tag}
-                    className={`${styles.dropdownItem} ${
-                      selectedTags.includes(tag) ? styles.active : ""
-                    }`}
-                    onClick={() => toggleTag(tag)}
-                  >
-                    {tag}
-                  </div>
-                ))}
-              </div>
-            )}
-          </div>
-
-          <div className={styles.selectedTagsBox}>
-            {selectedTags.map((tag) => (
-              <span key={tag} className={styles.selectedTag}>
-                {tag}
-                <button
-                  className={styles.removeTagButton}
-                  onClick={() => clearTag(tag)}
-                >
-                  ✕
-                </button>
-              </span>
-            ))}
-          </div>
+          <Dropdown
+            allTags={allTags}
+            selectedTags={selectedTags}
+            toggleTag={toggleTag}
+          />
         </div>
       </div>
+
       {filteredMemes.length === 0 ? (
         <p className={styles.emptyMessage}>Мемы не найдены</p>
       ) : (
         <div className={styles.memeGallery}>
           {filteredMemes.map((meme) => (
-            <img
+            <Image
               key={meme.id}
               src={meme.image}
               alt={meme.title}
@@ -141,14 +108,16 @@ export const MemesPage = ({ title, memes, uploadTitle }: MemesPageProps) => {
           ))}
         </div>
       )}
+
       {[book1, book2, book3, book4, book5, book6].map((book, index) => (
         <Image
           key={index}
-          src={book}
+          src={book.src} 
           alt={`book-${index + 1}`}
           className={styles.book}
         />
       ))}
+
       {isModalOpen && selectedMeme && (
         <div className={styles.modalOverlay} onClick={closeModal}>
           <div
@@ -158,18 +127,25 @@ export const MemesPage = ({ title, memes, uploadTitle }: MemesPageProps) => {
             <button className={styles.closeButton} onClick={closeModal}>
               ✕
             </button>
-            <img
+            <Image
               src={selectedMeme.image}
               alt={selectedMeme.title}
               className={styles.modalImage}
+              width={800}
+              height={600}
             />
             <div className={styles.modalInfo}>
-              <h2>{selectedMeme.title}</h2>
-              <p>{selectedMeme.tag}</p>
+              <h2 className={styles.modalTitle}>{selectedMeme.title}</h2>
+              <p className={styles.modalTag}>{selectedMeme.tag}</p>
             </div>
           </div>
         </div>
       )}
+
+      <button className={styles.loadMoreButton}>
+        <Image src={arrow.src} alt="Загрузить ещё" width={60} height={60} />
+      </button>
+
       <ExtraHeader page="memes" />
     </div>
   );
