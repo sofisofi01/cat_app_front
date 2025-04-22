@@ -16,7 +16,7 @@ export const useComments = (predictionId: number | null) => {
 
       try {
         const response = await CommentService.getByPrediction(predictionId);
-        setComments(response.comments);
+        setComments(response.comments || []);
       } catch (err) {
         console.error("Failed to fetch comments:", err);
         setError("Не удалось загрузить комментарии");
@@ -31,10 +31,14 @@ export const useComments = (predictionId: number | null) => {
   const addComment = async (text: string, username: string) => {
     if (!predictionId) return;
     try {
+      setIsLoading(true);
       const newComment = await CommentService.add(predictionId, text, username);
       setComments((prev) => [newComment, ...prev]);
     } catch (err) {
       console.error("Failed to add comment:", err);
+      setError("Не удалось добавить комментарий");
+    } finally {
+      setIsLoading(false);
     }
   };
 

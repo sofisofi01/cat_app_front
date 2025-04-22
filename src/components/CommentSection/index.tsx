@@ -15,9 +15,6 @@ export function CommentsSection({ predictionId }: CommentsSectionProps) {
     await addComment(text.trim(), username.trim());
     setText("");
   };
-
-  console.log(comments);
-
   return (
     <div className={styles.wrapper}>
       {isLoading ? (

@@ -8,8 +8,9 @@ import { usePredictions } from "@/hooks/usePredictions";
 import { useState } from "react";
 import { CommentsSection } from "@/components/CommentSection";
 import classNames from "classnames";
+import { ThoughtsProps } from "./types";
 
-export function ThoughtsPage() {
+export function ThoughtsPage({ usernameError, textError }: ThoughtsProps) {
   const {
     allPredictions,
     visiblePredictions,
@@ -65,7 +66,11 @@ export function ThoughtsPage() {
                         </p>
 
                         {openCommentsId === prediction.id && (
-                          <CommentsSection predictionId={prediction.id} />
+                          <CommentsSection
+                            textError={textError}
+                            usernameError={usernameError}
+                            predictionId={prediction.id}
+                          />
                         )}
 
                         {openCommentsId !== prediction.id && (
