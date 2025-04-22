@@ -14,6 +14,7 @@ export function CommentsSection({ predictionId }: CommentsSectionProps) {
     if (!text.trim() || !username.trim()) return;
     await addComment(text.trim(), username.trim());
     setText("");
+    setUsername("");
   };
   return (
     <div className={styles.wrapper}>

@@ -28,12 +28,11 @@ export const useComments = (predictionId: number | null) => {
     fetchComments();
   }, [predictionId]);
 
-  const addComment = async (text: string, username: string) => {
+  const addComment = async () => {
     if (!predictionId) return;
     try {
       setIsLoading(true);
-      const newComment = await CommentService.add(predictionId, text, username);
-      setComments((prev) => [newComment, ...prev]);
+      window.location.reload();
     } catch (err) {
       console.error("Failed to add comment:", err);
       setError("Не удалось добавить комментарий");
