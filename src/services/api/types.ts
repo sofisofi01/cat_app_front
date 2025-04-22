@@ -19,6 +19,12 @@ export type PredictionApiResponse = {
   current_page: number;
 };
 
+export type ImageApiResponse = {
+  images: Prediction[];
+  total_pages: number;
+  current_page: number;
+};
+
 export type Comment = {
   id: number;
   prediction_id: number;

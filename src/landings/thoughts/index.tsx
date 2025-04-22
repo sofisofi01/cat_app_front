@@ -36,7 +36,7 @@ export function ThoughtsPage({ usernameError, textError }: ThoughtsProps) {
                 {visiblePredictions.map((prediction) => (
                   <li key={prediction.id} className={styles.item}>
                     {prediction.avatar && (
-                      <img
+                      <Image
                         src={`${process.env.NEXT_PUBLIC_API_URL}${prediction.avatar}`}
                         alt="Иллюстрация предсказания"
                         className={styles.image}
