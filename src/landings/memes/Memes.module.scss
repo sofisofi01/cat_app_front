@@ -170,7 +170,6 @@
   filter: brightness(0.2);
 }
 
-
 .image {
   width: 100%;
   height: 200px;
@@ -193,7 +192,6 @@
   flex-wrap: wrap;
   align-items: center;
 }
-
 
 .book {
   position: absolute;
@@ -234,12 +232,6 @@
   top: 800px;
   right: 8%;
   left: auto;
-}
-
-@media (max-width: 1990px) {
-  .book {
-    display: none;
-  }
 }
 
 .modalOverlay {
@@ -351,7 +343,6 @@
   }
 }
 
-
 .closeButton {
   position: absolute;
   top: 12px;
@@ -364,11 +355,8 @@
   z-index: 3;
 }
 
-@include breakpoints(sm) {
-}
-
-@include breakpoints(xl) {
-  .menuContainer {
+@include breakpoints-max(xxl) {
+  .book {
     display: none;
   }
 }
