@@ -8,7 +8,7 @@ export type Prediction = {
 };
 
 export type ApiResponse<T> = {
-  predictions: T[];
+  content: T[];
   total_pages: number;
   current_page: number;
 };

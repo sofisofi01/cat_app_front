@@ -1,46 +1,29 @@
 "use client";
-import { useEffect, useState } from "react";
 import styles from "./thoughts.module.scss";
 import { ExtraHeader } from "@/components/ExtraHeader";
 import { Image } from "@/components/Image";
 import arrow from "./assets/chevron-down.png";
-import { Prediction, PredictionService } from "@/services/api";
 import heart from "./assets/heart-o.png";
+import { usePredictions } from "@/hooks/usePredictions";
+import { useComments } from "@/hooks/useComments";
+import { useState } from "react";
 
 export function ThoughtsPage() {
-  const [allPredictions, setAllPredictions] = useState<Prediction[]>([]);
-  const [visiblePredictions, setVisiblePredictions] = useState<Prediction[]>(
-    [],
-  );
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-  const [visibleCount, setVisibleCount] = useState(3);
+  const {
+    allPredictions,
+    visiblePredictions,
+    isLoading,
+    error,
+    loadMore,
+    visibleCount,
+  } = usePredictions(3);
 
-  const fetchAllPredictions = async () => {
-    setIsLoading(true);
-    setError(null);
-
-    try {
-      const response = await PredictionService.getAll();
-      setAllPredictions(response.predictions);
-      setVisiblePredictions(response.predictions.slice(0, 3));
-    } catch (error) {
-      console.error("Failed to fetch predictions:", error);
-      setError("Не удалось загрузить предсказания");
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
-  const loadMore = () => {
-    const nextCount = visibleCount + 3;
-    setVisibleCount(nextCount);
-    setVisiblePredictions(allPredictions.slice(0, nextCount));
-  };
-
-  useEffect(() => {
-    fetchAllPredictions();
-  }, []);
+  const [openCommentsId, setOpenCommentsId] = useState<number | null>(null);
+  const {
+    comments,
+    isLoading: commentsLoading,
+    error: commentsError,
+  } = useComments(openCommentsId);
 
   return (
     <div className={styles.wrapper}>
@@ -68,7 +51,41 @@ export function ThoughtsPage() {
                         <p className={styles.tag}>#{prediction.tag}</p>
                       )}
                       <div className={styles.commentSection}>
-                        <p className={styles.label}>Комментарии</p>
+                        <p
+                          className={styles.label}
+                          onClick={() =>
+                            setOpenCommentsId(
+                              prediction.id === openCommentsId
+                                ? null
+                                : prediction.id,
+                            )
+                          }
+                        >
+                          Комментарии
+                        </p>
+
+                        {openCommentsId === prediction.id && (
+                          <div className={styles.comments}>
+                            {commentsLoading ? (
+                              <p>Загрузка комментариев...</p>
+                            ) : commentsError ? (
+                              <p>{commentsError}</p>
+                            ) : comments.length === 0 ? (
+                              <p>Комментариев пока нет</p>
+                            ) : (
+                              <ul className={styles.commentsList}>
+                                {comments.map((comment) => (
+                                  <li
+                                    key={comment.id}
+                                    className={styles.commentItem}
+                                  >
+                                    <p>{comment.text}</p>
+                                  </li>
+                                ))}
+                              </ul>
+                            )}
+                          </div>
+                        )}
 
                         <div className={styles.likes}>
                           {prediction.likes && <p>{prediction.likes}</p>}
