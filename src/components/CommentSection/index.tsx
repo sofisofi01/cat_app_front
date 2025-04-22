@@ -2,6 +2,7 @@ import { useComments } from "@/hooks/useComments";
 import { useState } from "react";
 import { CommentsSectionProps } from "./types";
 import styles from "./CommentSection.module.scss";
+import classNames from "classnames";
 
 export function CommentsSection({ predictionId }: CommentsSectionProps) {
   const { comments, isLoading, error, addComment } = useComments(predictionId);
@@ -15,6 +16,8 @@ export function CommentsSection({ predictionId }: CommentsSectionProps) {
     setText("");
   };
 
+  console.log(comments);
+
   return (
     <div className={styles.wrapper}>
       {isLoading ? (
@@ -26,29 +29,32 @@ export function CommentsSection({ predictionId }: CommentsSectionProps) {
           <ul className={styles.list}>
             {comments.map((comment) => (
               <li key={comment.id} className={styles.comment}>
-                {comment.text}
+                <h3 className={styles.username}>{comment.username}</h3>
+                <p>{comment.text}</p>
               </li>
             ))}
             {comments.length === 0 && <li>Комментариев пока нет</li>}
           </ul>
 
           <form onSubmit={handleSubmit} className={styles.form}>
-            <input
-              type="text"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-              placeholder="Ваше имя"
-              className={styles.input}
-              required
-            />
-            <input
-              type="text"
-              value={text}
-              onChange={(e) => setText(e.target.value)}
-              placeholder="Комментарий..."
-              className={styles.input}
-              required
-            />
+            <div className={styles.fields}>
+              <input
+                type="text"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                placeholder="Ваше имя"
+                className={styles.input}
+                required
+              />
+              <input
+                type="text"
+                value={text}
+                onChange={(e) => setText(e.target.value)}
+                placeholder="Комментарий..."
+                className={classNames(styles.input, styles.commInput)}
+                required
+              />
+            </div>
             <button type="submit" className={styles.button}>
               Отправить
             </button>

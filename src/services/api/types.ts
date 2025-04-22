@@ -22,7 +22,7 @@ export type PredictionApiResponse = {
 export type Comment = {
   id: number;
   prediction_id: number;
-  author: string;
+  username: string;
   text: string;
   created_at: string;
 };

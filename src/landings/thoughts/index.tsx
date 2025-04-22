@@ -7,6 +7,7 @@ import heart from "./assets/heart-o.png";
 import { usePredictions } from "@/hooks/usePredictions";
 import { useState } from "react";
 import { CommentsSection } from "@/components/CommentSection";
+import classNames from "classnames";
 
 export function ThoughtsPage() {
   const {
@@ -45,32 +46,40 @@ export function ThoughtsPage() {
                       {prediction.tag && (
                         <p className={styles.tag}>#{prediction.tag}</p>
                       )}
-                      <div className={styles.commentSection}>
-                        <p
-                          className={styles.label}
-                          onClick={() =>
-                            setOpenCommentsId(
-                              prediction.id === openCommentsId
-                                ? null
-                                : prediction.id,
-                            )
-                          }
-                        >
-                          Комментарии
-                        </p>
+                      <div
+                        className={classNames(styles.commentSection, {
+                          [styles.isOpen]: openCommentsId,
+                        })}
+                      >
+                        {!openCommentsId && (
+                          <p
+                            className={styles.label}
+                            onClick={() =>
+                              setOpenCommentsId(
+                                prediction.id === openCommentsId
+                                  ? null
+                                  : prediction.id,
+                              )
+                            }
+                          >
+                            Комментарии
+                          </p>
+                        )}
 
                         {openCommentsId === prediction.id && (
                           <CommentsSection predictionId={prediction.id} />
                         )}
 
-                        <div className={styles.likes}>
-                          {prediction.likes && (
-                            <p className={styles.likesNum}>
-                              {prediction.likes}
-                            </p>
-                          )}
-                          <Image {...heart} className={styles.heart} />
-                        </div>
+                        {!openCommentsId && (
+                          <div className={styles.likes}>
+                            {prediction.likes && (
+                              <p className={styles.likesNum}>
+                                {prediction.likes}
+                              </p>
+                            )}
+                            <Image {...heart} className={styles.heart} />
+                          </div>
+                        )}
                       </div>
                     </div>
                   </li>
