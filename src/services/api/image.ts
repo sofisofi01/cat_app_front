@@ -1,8 +1,8 @@
 import apiClient from "./client";
-import { Image, ApiResponse } from "./types";
+import { Image, ImageApiResponse } from "./types";
 
 export const ImageService = {
-  getAll: async (): Promise<ApiResponse<Image>> => {
+  getAll: async (): Promise<ImageApiResponse> => {
     return apiClient.get("/images/");
   },
 

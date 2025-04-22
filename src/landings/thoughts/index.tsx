@@ -1,46 +1,26 @@
 "use client";
-import { useEffect, useState } from "react";
 import styles from "./thoughts.module.scss";
 import { ExtraHeader } from "@/components/ExtraHeader";
 import { Image } from "@/components/Image";
 import arrow from "./assets/chevron-down.png";
-import { Prediction, PredictionService } from "@/services/api";
 import heart from "./assets/heart-o.png";
+import { usePredictions } from "@/hooks/usePredictions";
+import { useState } from "react";
+import { CommentsSection } from "@/components/CommentSection";
+import classNames from "classnames";
+import { ThoughtsProps } from "./types";
 
-export function ThoughtsPage() {
-  const [allPredictions, setAllPredictions] = useState<Prediction[]>([]);
-  const [visiblePredictions, setVisiblePredictions] = useState<Prediction[]>(
-    [],
-  );
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-  const [visibleCount, setVisibleCount] = useState(3);
+export function ThoughtsPage({ usernameError, textError }: ThoughtsProps) {
+  const {
+    allPredictions,
+    visiblePredictions,
+    isLoading,
+    error,
+    loadMore,
+    visibleCount,
+  } = usePredictions(3);
 
-  const fetchAllPredictions = async () => {
-    setIsLoading(true);
-    setError(null);
-
-    try {
-      const response = await PredictionService.getAll();
-      setAllPredictions(response.predictions);
-      setVisiblePredictions(response.predictions.slice(0, 3));
-    } catch (error) {
-      console.error("Failed to fetch predictions:", error);
-      setError("Не удалось загрузить предсказания");
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
-  const loadMore = () => {
-    const nextCount = visibleCount + 3;
-    setVisibleCount(nextCount);
-    setVisiblePredictions(allPredictions.slice(0, nextCount));
-  };
-
-  useEffect(() => {
-    fetchAllPredictions();
-  }, []);
+  const [openCommentsId, setOpenCommentsId] = useState<number | null>(null);
 
   return (
     <div className={styles.wrapper}>
@@ -56,7 +36,7 @@ export function ThoughtsPage() {
                 {visiblePredictions.map((prediction) => (
                   <li key={prediction.id} className={styles.item}>
                     {prediction.avatar && (
-                      <img
+                      <Image
                         src={`${process.env.NEXT_PUBLIC_API_URL}${prediction.avatar}`}
                         alt="Иллюстрация предсказания"
                         className={styles.image}
@@ -67,13 +47,42 @@ export function ThoughtsPage() {
                       {prediction.tag && (
                         <p className={styles.tag}>#{prediction.tag}</p>
                       )}
-                      <div className={styles.commentSection}>
-                        <p className={styles.label}>Комментарии</p>
+                      <div
+                        className={classNames(styles.commentSection, {
+                          [styles.isOpen]: openCommentsId === prediction.id,
+                        })}
+                      >
+                        <p
+                          className={styles.label}
+                          onClick={() =>
+                            setOpenCommentsId(
+                              prediction.id === openCommentsId
+                                ? null
+                                : prediction.id,
+                            )
+                          }
+                        >
+                          Комментарии
+                        </p>
 
-                        <div className={styles.likes}>
-                          {prediction.likes && <p>{prediction.likes}</p>}
-                          <Image {...heart} className={styles.heart} />
-                        </div>
+                        {openCommentsId === prediction.id && (
+                          <CommentsSection
+                            textError={textError}
+                            usernameError={usernameError}
+                            predictionId={prediction.id}
+                          />
+                        )}
+
+                        {openCommentsId !== prediction.id && (
+                          <div className={styles.likes}>
+                            {prediction.likes && (
+                              <p className={styles.likesNum}>
+                                {prediction.likes}
+                              </p>
+                            )}
+                            <Image {...heart} className={styles.heart} />
+                          </div>
+                        )}
                       </div>
                     </div>
                   </li>

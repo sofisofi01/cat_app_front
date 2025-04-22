@@ -7,8 +7,20 @@ export type Prediction = {
   avatar?: string;
 };
 
-export type ApiResponse<T> = {
-  predictions: T[];
+export type CommentApiResponse = {
+  comments: Comment[];
+  total_pages: number;
+  current_page: number;
+};
+
+export type PredictionApiResponse = {
+  predictions: Prediction[];
+  total_pages: number;
+  current_page: number;
+};
+
+export type ImageApiResponse = {
+  images: Prediction[];
   total_pages: number;
   current_page: number;
 };
@@ -16,7 +28,7 @@ export type ApiResponse<T> = {
 export type Comment = {
   id: number;
   prediction_id: number;
-  author: string;
+  username: string;
   text: string;
   created_at: string;
 };

@@ -71,6 +71,11 @@
   justify-self: center;
   color: $color-blue;
   font-size: 16px;
+  &.isOpen {
+    flex-direction: column;
+    align-self: center;
+    width: 100%;
+  }
 }
 
 .label {
@@ -99,4 +104,132 @@
   display: flex;
   flex-direction: row;
   font-style: bold;
+}
+
+@include breakpoints(sm) {
+  .wrapper {
+    margin-top: 40px;
+  }
+
+  .list {
+    margin-top: 40px;
+  }
+
+  .item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .meta {
+    min-height: 165px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .commentSection {
+    margin: 0;
+    align-self: end;
+
+    &.isOpen {
+      flex-direction: column;
+      align-self: center;
+      width: 100%;
+
+      .label {
+        margin-top: 20px;
+      }
+    }
+  }
+}
+
+@include breakpoints(xl) {
+  .wrapper {
+    max-width: 80%;
+    margin: 40px auto 0;
+  }
+
+  .list {
+    margin-top: 50px;
+  }
+
+  .item {
+    gap: 30px;
+  }
+
+  .text {
+    font-size: 24px;
+  }
+
+  .meta {
+    height: auto;
+    min-height: 200px;
+  }
+
+  .tag {
+    font-size: 20px;
+  }
+
+  .image {
+    width: 90px;
+    height: 90px;
+    flex-shrink: 0;
+  }
+
+  .commentSection {
+    display: flex;
+    flex-direction: row;
+    font-size: 20px;
+  }
+
+  .likesNum {
+    margin-bottom: 3px;
+  }
+
+  .likes {
+    justify-content: center;
+    align-items: end;
+  }
+}
+
+@include breakpoints(xxl) {
+  .wrapper {
+    max-width: 60%;
+  }
+
+  .text {
+    font-size: 40px;
+  }
+
+  .tag {
+    font-size: 30px;
+  }
+
+  .image {
+    width: 120px;
+    height: 120px;
+    flex-shrink: 0;
+  }
+
+  .commentSection {
+    font-size: 30px;
+    align-items: center;
+  }
+
+  .meta {
+    height: auto;
+    min-height: 400px;
+  }
+
+  .likes {
+    justify-content: center;
+    align-items: end;
+  }
+
+  .likesNum {
+    margin-bottom: 0;
+  }
 }
