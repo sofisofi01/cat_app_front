@@ -64,7 +64,11 @@ export function ThoughtsPage() {
                         )}
 
                         <div className={styles.likes}>
-                          {prediction.likes && <p>{prediction.likes}</p>}
+                          {prediction.likes && (
+                            <p className={styles.likesNum}>
+                              {prediction.likes}
+                            </p>
+                          )}
                           <Image {...heart} className={styles.heart} />
                         </div>
                       </div>

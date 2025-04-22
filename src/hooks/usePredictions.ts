@@ -17,8 +17,8 @@ export const usePredictions = (initialVisibleCount = 3) => {
 
     try {
       const response = await PredictionService.getAll();
-      setAllPredictions(response.content);
-      setVisiblePredictions(response.content.slice(0, initialVisibleCount));
+      setAllPredictions(response.predictions);
+      setVisiblePredictions(response.predictions.slice(0, initialVisibleCount));
     } catch (error) {
       console.error("Failed to fetch predictions:", error);
       setError("Не удалось загрузить предсказания");

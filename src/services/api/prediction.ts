@@ -1,12 +1,12 @@
 import apiClient from "./client";
-import { Prediction, ApiResponse } from "./types";
+import { Prediction, PredictionApiResponse } from "./types";
 
 export const PredictionService = {
   getRandom: async (): Promise<Prediction> => {
     return apiClient.get("/random-prediction/");
   },
 
-  getAll: async (): Promise<ApiResponse<Prediction>> => {
+  getAll: async (): Promise<PredictionApiResponse> => {
     return apiClient.get("/all-predictions/");
   },
 

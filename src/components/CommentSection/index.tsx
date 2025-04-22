@@ -5,13 +5,14 @@ import styles from "./CommentSection.module.scss";
 
 export function CommentsSection({ predictionId }: CommentsSectionProps) {
   const { comments, isLoading, error, addComment } = useComments(predictionId);
-  const [newComment, setNewComment] = useState("");
+  const [username, setUsername] = useState("");
+  const [text, setText] = useState("");
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!newComment.trim()) return;
-    await addComment(newComment.trim());
-    setNewComment("");
+    if (!text.trim() || !username.trim()) return;
+    await addComment(text.trim(), username.trim());
+    setText("");
   };
 
   return (
@@ -34,10 +35,19 @@ export function CommentsSection({ predictionId }: CommentsSectionProps) {
           <form onSubmit={handleSubmit} className={styles.form}>
             <input
               type="text"
-              value={newComment}
-              onChange={(e) => setNewComment(e.target.value)}
-              placeholder="Написать комментарий..."
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              placeholder="Ваше имя"
               className={styles.input}
+              required
+            />
+            <input
+              type="text"
+              value={text}
+              onChange={(e) => setText(e.target.value)}
+              placeholder="Комментарий..."
+              className={styles.input}
+              required
             />
             <button type="submit" className={styles.button}>
               Отправить
