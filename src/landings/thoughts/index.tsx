@@ -5,8 +5,8 @@ import { Image } from "@/components/Image";
 import arrow from "./assets/chevron-down.png";
 import heart from "./assets/heart-o.png";
 import { usePredictions } from "@/hooks/usePredictions";
-import { useComments } from "@/hooks/useComments";
 import { useState } from "react";
+import { CommentsSection } from "@/components/CommentSection";
 
 export function ThoughtsPage() {
   const {
@@ -19,11 +19,6 @@ export function ThoughtsPage() {
   } = usePredictions(3);
 
   const [openCommentsId, setOpenCommentsId] = useState<number | null>(null);
-  const {
-    comments,
-    isLoading: commentsLoading,
-    error: commentsError,
-  } = useComments(openCommentsId);
 
   return (
     <div className={styles.wrapper}>
@@ -65,26 +60,7 @@ export function ThoughtsPage() {
                         </p>
 
                         {openCommentsId === prediction.id && (
-                          <div className={styles.comments}>
-                            {commentsLoading ? (
-                              <p>Загрузка комментариев...</p>
-                            ) : commentsError ? (
-                              <p>{commentsError}</p>
-                            ) : comments.length === 0 ? (
-                              <p>Комментариев пока нет</p>
-                            ) : (
-                              <ul className={styles.commentsList}>
-                                {comments.map((comment) => (
-                                  <li
-                                    key={comment.id}
-                                    className={styles.commentItem}
-                                  >
-                                    <p>{comment.text}</p>
-                                  </li>
-                                ))}
-                              </ul>
-                            )}
-                          </div>
+                          <CommentsSection predictionId={prediction.id} />
                         )}
 
                         <div className={styles.likes}>

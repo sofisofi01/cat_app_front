@@ -28,5 +28,15 @@ export const useComments = (predictionId: number | null) => {
     fetchComments();
   }, [predictionId]);
 
-  return { comments, isLoading, error };
+  const addComment = async (text: string) => {
+    if (!predictionId) return;
+    try {
+      const newComment = await CommentService.add(predictionId, text);
+      setComments((prev) => [newComment, ...prev]);
+    } catch (err) {
+      console.error("Failed to add comment:", err);
+    }
+  };
+
+  return { comments, isLoading, error, addComment };
 };
