@@ -71,6 +71,11 @@
   justify-self: center;
   color: $color-blue;
   font-size: 16px;
+  &.isOpen {
+    flex-direction: column;
+    align-self: center;
+    width: 100%;
+  }
 }
 
 .label {
@@ -130,8 +135,13 @@
     align-self: end;
 
     &.isOpen {
+      flex-direction: column;
       align-self: center;
       width: 100%;
+
+      .label {
+        margin-top: 20px;
+      }
     }
   }
 }

@@ -48,29 +48,27 @@ export function ThoughtsPage() {
                       )}
                       <div
                         className={classNames(styles.commentSection, {
-                          [styles.isOpen]: openCommentsId,
+                          [styles.isOpen]: openCommentsId === prediction.id,
                         })}
                       >
-                        {!openCommentsId && (
-                          <p
-                            className={styles.label}
-                            onClick={() =>
-                              setOpenCommentsId(
-                                prediction.id === openCommentsId
-                                  ? null
-                                  : prediction.id,
-                              )
-                            }
-                          >
-                            Комментарии
-                          </p>
-                        )}
+                        <p
+                          className={styles.label}
+                          onClick={() =>
+                            setOpenCommentsId(
+                              prediction.id === openCommentsId
+                                ? null
+                                : prediction.id,
+                            )
+                          }
+                        >
+                          Комментарии
+                        </p>
 
                         {openCommentsId === prediction.id && (
                           <CommentsSection predictionId={prediction.id} />
                         )}
 
-                        {!openCommentsId && (
+                        {openCommentsId !== prediction.id && (
                           <div className={styles.likes}>
                             {prediction.likes && (
                               <p className={styles.likesNum}>
