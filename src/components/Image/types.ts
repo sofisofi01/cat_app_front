@@ -12,6 +12,7 @@ export type ImageProps = Pick<
   | 'style'
   | 'height'
   | 'width'
+  | 'onClick'
 > & {
   src?: string;
 };

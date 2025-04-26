@@ -13,6 +13,7 @@ export function Image(props: ImageProps) {
       title={props.title}
       loading={props.loading}
       className={props.className}
+      onClick={props.onClick}
     />
   );
 }

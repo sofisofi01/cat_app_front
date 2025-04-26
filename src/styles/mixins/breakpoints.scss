@@ -1,11 +1,21 @@
-@use 'sass:map';
-@import '../variables/breakpoints.scss';
+@use "sass:map";
+@import "../variables/breakpoints.scss";
 
 @mixin breakpoints($name) {
   $screen: map.get($layout-breakpoints, $name);
 
   @if $screen {
     @media (min-width: $screen) {
+      @content;
+    }
+  }
+}
+
+@mixin breakpoints-max($name) {
+  $screen: map.get($layout-breakpoints, $name);
+
+  @if $screen {
+    @media (max-width: ($screen - 1)) {
       @content;
     }
   }
