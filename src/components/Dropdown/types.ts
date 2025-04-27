@@ -1,6 +1,4 @@
-export interface DropdownProps {
-    allTags: string[];
-    selectedTags: string[];
-    toggleTag: (tag: string) => void;
-  }
-  
+export type DropdownProps = {
+  selectedTags: string[];
+  toggleTag: (tag: string) => void;
+};
