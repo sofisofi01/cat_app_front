@@ -17,4 +17,12 @@ export const PredictionService = {
   like: async (predictionId: number): Promise<Prediction> => {
     return apiClient.post(`/like-prediction/${predictionId}/`);
   },
+
+  unlike: async (predictionId: number): Promise<Prediction> => {
+    return apiClient.post(`/unlike-prediction/${predictionId}/`);
+  },
+
+  getLikes: async (predictionId: number): Promise<Prediction> => {
+    return apiClient.get(`/prediction-likes/${predictionId}/`);
+  },
 };

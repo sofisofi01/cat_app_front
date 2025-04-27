@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { Prediction } from "@/services/api/types";
 import { PredictionService } from "@/services/api/prediction";
 
@@ -11,7 +11,7 @@ export const usePredictions = (initialVisibleCount = 3) => {
   const [error, setError] = useState<string | null>(null);
   const [visibleCount, setVisibleCount] = useState(initialVisibleCount);
 
-  const fetchAllPredictions = async () => {
+  const fetchAllPredictions = useCallback(async () => {
     setIsLoading(true);
     setError(null);
 
@@ -25,17 +25,33 @@ export const usePredictions = (initialVisibleCount = 3) => {
     } finally {
       setIsLoading(false);
     }
-  };
+  }, [initialVisibleCount]);
 
-  const loadMore = () => {
+  const loadMore = useCallback(() => {
     const nextCount = visibleCount + initialVisibleCount;
     setVisibleCount(nextCount);
     setVisiblePredictions(allPredictions.slice(0, nextCount));
-  };
+  }, [allPredictions, initialVisibleCount, visibleCount]);
+
+  const updatePredictionLikes = useCallback(
+    (predictionId: number, newLikes: number) => {
+      setAllPredictions((prev) =>
+        prev.map((pred) =>
+          pred.id === predictionId ? { ...pred, likes: newLikes } : pred,
+        ),
+      );
+      setVisiblePredictions((prev) =>
+        prev.map((pred) =>
+          pred.id === predictionId ? { ...pred, likes: newLikes } : pred,
+        ),
+      );
+    },
+    [],
+  );
 
   useEffect(() => {
     fetchAllPredictions();
-  }, [initialVisibleCount]);
+  }, [fetchAllPredictions]);
 
   return {
     allPredictions,
@@ -44,5 +60,7 @@ export const usePredictions = (initialVisibleCount = 3) => {
     error,
     loadMore,
     visibleCount,
+    updatePredictionLikes,
+    refetch: fetchAllPredictions,
   };
 };

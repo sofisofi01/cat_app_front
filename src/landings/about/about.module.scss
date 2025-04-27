@@ -1,237 +1,237 @@
-@import '../../styles/mixins/breakpoints.scss';
-@import '../../styles/variables/fonts.scss';
-@import '../../styles/variables/colors.scss';
+@import "../../styles/mixins/breakpoints.scss";
+@import "../../styles/variables/fonts.scss";
+@import "../../styles/variables/colors.scss";
 
 @keyframes gentle-drift {
-    0%, 100% {
-      transform: translateY(0);
-    }
-    50% {
-      transform: translateY(-20px);
-    }
+  0%,
+  100% {
+    transform: translateY(0);
   }
+  50% {
+    transform: translateY(-20px);
+  }
+}
 
 .wrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
 }
 
 .image {
-    display: none;
+  display: none;
 }
 
 .title {
-    font-size: $font-size-large;
-    font-family: $font-family;
-    line-height: 150%;
-    font-weight: bold;
-    margin-bottom: 15px;
+  font-size: $font-size-large;
+  font-family: $font-family;
+  line-height: 150%;
+  font-weight: bold;
+  margin-bottom: 15px;
 }
 
 .caption {
-    font-family: $font-family;
-    line-height: 150%;
-    font-weight: bold;
-    font-style: italic;
-    color: $color-blue;
+  font-family: $font-family;
+  line-height: 150%;
+  font-weight: bold;
+  font-style: italic;
+  color: $color-blue;
 }
 
 .itemsWrapper {
-    margin-top: 40px;
-    display: flex;
-    flex-direction: column;
-    gap: 40px;
-    font-family: $font-family-secondary;
-    color: $color-blue;
-    line-height: 150%;
-    font-size: $font-size-small;
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  font-family: $font-family-secondary;
+  color: $color-blue;
+  line-height: 150%;
+  font-size: $font-size-small;
 }
 
 .itemNum {
-    font-family: $font-family;
-    font-size: 30px; 
-    font-weight: bold;
-    margin-bottom: 8px;
+  font-family: $font-family;
+  font-size: 30px;
+  font-weight: bold;
+  margin-bottom: 8px;
 }
 
 .itemTitle {
-    font-weight: bold;
-    margin-bottom: 8px;
+  font-weight: bold;
+  margin-bottom: 8px;
 }
 
 .book {
-    display: none;
+  display: none;
 }
 
 @include breakpoints(sm) {
-    .wrapper {
-        position: relative;
-        height: 1000px;
-        display: flex;
-        flex-direction: column;
-        justify-content: end;
+  .wrapper {
+    position: relative;
+    height: 1000px;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+  }
+
+  .head {
+    width: 40%;
+    position: absolute;
+    right: 5%;
+    top: 70px;
+  }
+
+  .image {
+    display: block;
+    position: absolute;
+    width: 320px;
+    height: auto;
+    object-fit: contain;
+    left: 2%;
+    top: 1%;
+  }
+
+  .item {
+    position: absolute;
+    right: 3%;
+    width: 50%;
+    top: 350px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+
+    &:nth-child(2) {
+      top: 500px;
+      right: 40%;
     }
 
-    .head {
-        width: 40%;
-        position: absolute;
-        right: 5%;
-        top: 70px;
+    &:nth-child(3) {
+      top: 650px;
     }
-
-    .image {
-        display: block;
-        position: absolute;
-        width: 320px;
-        height: auto;
-        object-fit: contain;
-        left: 2%;
-        top: 1%;
-    }
-
-    .item {
-        position: absolute;
-        right: 3%;
-        width: 50%;
-        top: 350px;
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        gap: 20px;
-
-        &:nth-child(2) {
-            top: 500px;
-            right: 40%;
-        }
-
-        &:nth-child(3) {
-            top: 650px;
-        }
-    }
+  }
 }
 
 @include breakpoints(xl) {
-    .wrapper {
-        height: 1100px;
-    }
-    .title {
-        font-size: 37px;
-    }
+  .wrapper {
+    height: 1100px;
+  }
+  .title {
+    font-size: 37px;
+  }
 
-    .caption {
-        font-size: 25px;
-    }
+  .caption {
+    font-size: 25px;
+  }
 
-    .head {
-        right: 7%;
-        width: 40%;
-    }
+  .head {
+    right: 7%;
+    width: 40%;
+  }
 
-    .image {
-        top: 3%;
-        width: 560px;
-        left: 5%;
-    }
+  .image {
+    top: 3%;
+    width: 560px;
+    left: 5%;
+  }
 
-    .itemNum {
-        font-size: 40px;
-    }
+  .itemNum {
+    font-size: 40px;
+  }
 
-    .itemTitle {
-        margin-bottom: 30px;
-    }
+  .itemTitle {
+    margin-bottom: 30px;
+  }
 
-    .item {
-        top: 500px;
-        width: 40%;
-        font-size: 22px;
-        gap: 40px;
+  .item {
+    top: 500px;
+    width: 40%;
+    font-size: 22px;
+    gap: 40px;
 
-        &:nth-child(2) {
-            top: 700px;
-            right: 50%;
-        }
-
-        &:nth-child(3) {
-            top: 850px;
-        }
+    &:nth-child(2) {
+      top: 700px;
+      right: 50%;
     }
 
-    .book {
-        display: block;
-        position: absolute;
-        animation: gentle-drift 2s ease-in-out infinite;
-        top: 100px;
-        left: 1%;
-
-        &:nth-of-type(2) {
-            top: 10px;
-            left: 40%;
-        }
-
-        &:nth-of-type(3) {
-            top: 350px;
-            left: 90%;
-        }
-
-        &:nth-of-type(4) {
-            top: 900px;
-            left: 20%;
-        }
-
-        &:nth-of-type(5) {
-            top: 700px;
-            left: 60%;
-        }
+    &:nth-child(3) {
+      top: 850px;
     }
+  }
+
+  .book {
+    display: block;
+    position: absolute;
+    animation: gentle-drift 2s ease-in-out infinite;
+    top: 100px;
+    left: 1%;
+
+    &:nth-of-type(2) {
+      top: 10px;
+      left: 40%;
+    }
+
+    &:nth-of-type(3) {
+      top: 350px;
+      left: 90%;
+    }
+
+    &:nth-of-type(4) {
+      top: 900px;
+      left: 20%;
+    }
+
+    &:nth-of-type(5) {
+      top: 700px;
+      left: 60%;
+    }
+  }
 }
 
 @include breakpoints(xxl) {
+  .wrapper {
+    height: 1900px;
+  }
 
-    .wrapper {
-        height: 1900px;
+  .head {
+    top: 12%;
+    right: 15%;
+    width: 40%;
+  }
+
+  .title {
+    font-size: 50px;
+  }
+
+  .caption {
+    font-size: 40px;
+  }
+
+  .image {
+    top: 10%;
+    width: 800px;
+    left: 5%;
+  }
+
+  .itemNum {
+    font-size: 70px;
+  }
+
+  .item {
+    top: 800px;
+    width: 40%;
+    font-size: 40px;
+    line-height: 150%;
+    gap: 40px;
+
+    &:nth-child(2) {
+      top: 1200px;
+      right: 50%;
     }
-    
-    .head {
-        top: 12%;
-        right: 15%;
-        width: 40%;
+
+    &:nth-child(3) {
+      top: 1400px;
     }
-
-    .title {
-        font-size: 50px;
-    }
-
-    .caption {
-        font-size: 40px;
-    }
-
-    .image {
-        top: 10%;
-        width: 800px;
-        left: 5%;
-    }
-
-    .itemNum {
-        font-size: 70px;
-    }
-
-    .item {
-        top: 800px;
-        width: 40%;
-        font-size: 40px;
-        line-height: 150%;
-        gap: 40px;
-
-        &:nth-child(2) {
-            top: 1200px;
-            right: 50%;
-        }
-
-        &:nth-child(3) {
-            top: 1400px;
-        }
-    }
+  }
 }
