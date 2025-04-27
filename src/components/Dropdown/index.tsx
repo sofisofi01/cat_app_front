@@ -2,7 +2,19 @@ import { useState } from "react";
 import styles from "./Dropdown.module.scss";
 import { DropdownProps } from "./types";
 
-const ALL_TAGS = ["funny", "animals", "games", "movies", "reactions"] as const;
+const ALL_TAGS = [
+  "philosophical",
+  "funny",
+  "inspirational",
+  "domestic",
+  "relax",
+  "dreams",
+  "trivial",
+  "nostalgia",
+  "mysterious",
+  "fate",
+  "everyday",
+] as const;
 
 export const Dropdown = ({ selectedTags, toggleTag }: DropdownProps) => {
   const [isOpen, setIsOpen] = useState(false);

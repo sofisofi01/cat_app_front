@@ -15,12 +15,14 @@ import { Dropdown } from "@/components/Dropdown";
 import { ExtraHeader } from "@/components/ExtraHeader";
 import { ImageService } from "@/services/api/image";
 import { ImageType } from "@/services/api/types";
+import { Popup } from "@/components/Popup";
 
 export const MemesPage = () => {
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
   const [memes, setMemes] = useState<ImageType[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [selectedMeme, setSelectedMeme] = useState<ImageType | null>(null);
 
   useEffect(() => {
     const fetchMemes = async () => {
@@ -33,7 +35,6 @@ export const MemesPage = () => {
           image: image.image,
           tag: image.tag,
         }));
-        console.log(formattedMemes);
         setMemes(formattedMemes);
       } catch (err) {
         setError("Failed to load memes. Please try again later.");
@@ -52,13 +53,21 @@ export const MemesPage = () => {
     );
   };
 
+  const handleMemeClick = (meme: ImageType) => {
+    setSelectedMeme(meme);
+  };
+
+  const handleClosePopup = () => {
+    setSelectedMeme(null);
+  };
+
   const filteredMemes =
     selectedTags.length === 0
       ? memes
       : memes.filter((meme) => meme.tag && selectedTags.includes(meme.tag));
 
   if (loading) {
-    return <div className={styles.wrapper}>Loading memes...</div>;
+    return <div className={styles.wrapper}>Загрузка...</div>;
   }
 
   if (error) {
@@ -98,13 +107,14 @@ export const MemesPage = () => {
       ) : (
         <div className={styles.memeGallery}>
           {filteredMemes.map((meme) => (
-            <Image
-              key={meme.id}
-              src={`${process.env.NEXT_PUBLIC_API_URL}${meme.image}`}
-              alt={meme.description}
-              className={styles.image}
-              loading="lazy"
-            />
+            <div key={meme.id} onClick={() => handleMemeClick(meme)}>
+              <Image
+                src={`${process.env.NEXT_PUBLIC_API_URL}${meme.image}`}
+                alt={meme.description}
+                className={styles.image}
+                loading="lazy"
+              />
+            </div>
           ))}
         </div>
       )}
@@ -118,7 +128,30 @@ export const MemesPage = () => {
         />
       ))}
 
-      <ExtraHeader page={"memes"} />
+      <div className={styles.footer}>
+        <ExtraHeader page={"memes"} />
+      </div>
+
+      <Popup
+        isOpen={!!selectedMeme}
+        onClose={handleClosePopup}
+        mods={["noPadding", "outerIcon"]}
+      >
+        {selectedMeme && (
+          <div className={styles.memePopupContent}>
+            <Image
+              src={`${process.env.NEXT_PUBLIC_API_URL}${selectedMeme.image}`}
+              alt={selectedMeme.description}
+              className={styles.popupImage}
+            />
+            {selectedMeme.description && (
+              <p className={styles.memeDescription}>
+                {selectedMeme.description}
+              </p>
+            )}
+          </div>
+        )}
+      </Popup>
     </div>
   );
 };
