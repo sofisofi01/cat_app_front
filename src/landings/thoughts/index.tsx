@@ -4,11 +4,13 @@ import { ExtraHeader } from "@/components/ExtraHeader";
 import { Image } from "@/components/Image";
 import arrow from "./assets/chevron-down.png";
 import heart from "./assets/heart-o.png";
+import heartFilled from "./assets/heart.png";
 import { usePredictions } from "@/hooks/usePredictions";
 import { useState } from "react";
 import { CommentsSection } from "@/components/CommentSection";
 import classNames from "classnames";
 import { ThoughtsProps } from "./types";
+import { useLikes } from "@/hooks/useLikes";
 
 export function ThoughtsPage({ usernameError, textError }: ThoughtsProps) {
   const {
@@ -21,6 +23,7 @@ export function ThoughtsPage({ usernameError, textError }: ThoughtsProps) {
   } = usePredictions(3);
 
   const [openCommentsId, setOpenCommentsId] = useState<number | null>(null);
+  const { likePrediction, isLiked } = useLikes();
 
   return (
     <div className={styles.wrapper}>
@@ -74,13 +77,24 @@ export function ThoughtsPage({ usernameError, textError }: ThoughtsProps) {
                         )}
 
                         {openCommentsId !== prediction.id && (
-                          <div className={styles.likes}>
+                          <div
+                            className={styles.likes}
+                            onClick={() => likePrediction(prediction.id)}
+                          >
                             {prediction.likes && (
                               <p className={styles.likesNum}>
-                                {prediction.likes}
+                                {prediction.likes +
+                                  (isLiked(prediction.id) ? 1 : 0)}
                               </p>
                             )}
-                            <Image {...heart} className={styles.heart} />
+                            <Image
+                              src={
+                                isLiked(prediction.id)
+                                  ? heartFilled.src
+                                  : heart.src
+                              }
+                              className={styles.heart}
+                            />
                           </div>
                         )}
                       </div>
