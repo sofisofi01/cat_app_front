@@ -154,6 +154,19 @@
     height: 200px;
   }
 
+  .memePopupContent {
+    width: 100%;
+    object-fit: contain;
+    border-radius: 0;
+    position: relative;
+  }
+
+  .popupImage {
+    width: 100%;
+    object-fit: contain;
+    border-radius: 0;
+  }
+
   .book {
     display: block;
     position: fixed;

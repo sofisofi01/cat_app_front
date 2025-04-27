@@ -65,7 +65,7 @@
 
   &.outerIcon {
     top: 0;
-    right: 30px;
+    right: 20px;
   }
 }
 
@@ -78,5 +78,10 @@
 
   .closeBtn {
     font-size: 50px;
+
+    &.outerIcon {
+      top: 0;
+      right: -70px;
+    }
   }
 }

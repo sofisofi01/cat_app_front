@@ -144,10 +144,8 @@ export const MemesPage = () => {
               alt={selectedMeme.description}
               className={styles.popupImage}
             />
-            {selectedMeme.description && (
-              <p className={styles.memeDescription}>
-                {selectedMeme.description}
-              </p>
+            {selectedMeme.tag && (
+              <p className={styles.memeDescription}>{"#" + selectedMeme.tag}</p>
             )}
           </div>
         )}
