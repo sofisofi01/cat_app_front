@@ -20,10 +20,32 @@ export function ThoughtsPage({ usernameError, textError }: ThoughtsProps) {
     error,
     loadMore,
     visibleCount,
+    updatePredictionLikes,
+    refetch,
   } = usePredictions(3);
 
   const [openCommentsId, setOpenCommentsId] = useState<number | null>(null);
-  const { likePrediction, isLiked } = useLikes();
+  const { likePrediction, isLiked, isLoading: isLikeLoading } = useLikes();
+
+  const handleLike = async (predictionId: number) => {
+    const prediction = visiblePredictions.find((p) => p.id === predictionId);
+    if (!prediction || isLikeLoading) return;
+
+    const currentLikes = prediction.likes || 0;
+    const newLikes = isLiked(predictionId)
+      ? currentLikes - 1
+      : currentLikes + 1;
+
+    updatePredictionLikes(predictionId, newLikes);
+
+    try {
+      await likePrediction(predictionId);
+      await refetch();
+    } catch (error) {
+      updatePredictionLikes(predictionId, currentLikes);
+      console.error("Ошибка при обновлении лайка:", error);
+    }
+  };
 
   return (
     <div className={styles.wrapper}>
@@ -43,6 +65,8 @@ export function ThoughtsPage({ usernameError, textError }: ThoughtsProps) {
                         src={`${process.env.NEXT_PUBLIC_API_URL}${prediction.avatar}`}
                         alt="Иллюстрация предсказания"
                         className={styles.image}
+                        width={300}
+                        height={200}
                       />
                     )}
                     <div className={styles.meta}>
@@ -77,24 +101,31 @@ export function ThoughtsPage({ usernameError, textError }: ThoughtsProps) {
                         )}
 
                         {openCommentsId !== prediction.id && (
-                          <div
-                            className={styles.likes}
-                            onClick={() => likePrediction(prediction.id)}
-                          >
-                            {prediction.likes && (
+                          <div className={styles.actions}>
+                            <div
+                              className={styles.likes}
+                              onClick={() => handleLike(prediction.id)}
+                              aria-disabled={isLikeLoading}
+                            >
                               <p className={styles.likesNum}>
-                                {prediction.likes +
-                                  (isLiked(prediction.id) ? 1 : 0)}
+                                {prediction.likes || 0}
                               </p>
-                            )}
-                            <Image
-                              src={
-                                isLiked(prediction.id)
-                                  ? heartFilled.src
-                                  : heart.src
-                              }
-                              className={styles.heart}
-                            />
+                              <Image
+                                src={
+                                  isLiked(prediction.id)
+                                    ? heartFilled.src
+                                    : heart.src
+                                }
+                                className={styles.heart}
+                                alt={
+                                  isLiked(prediction.id)
+                                    ? "Лайкнуто"
+                                    : "Поставить лайк"
+                                }
+                                width={20}
+                                height={20}
+                              />
+                            </div>
                           </div>
                         )}
                       </div>
@@ -104,8 +135,18 @@ export function ThoughtsPage({ usernameError, textError }: ThoughtsProps) {
               </ul>
 
               {visibleCount < allPredictions.length && (
-                <button onClick={loadMore} className={styles.loadMoreButton}>
-                  <Image {...arrow} />
+                <button
+                  onClick={loadMore}
+                  className={styles.loadMoreButton}
+                  disabled={isLoading}
+                >
+                  <Image
+                    {...arrow}
+                    alt="Загрузить еще"
+                    className={classNames({
+                      [styles.rotate]: isLoading,
+                    })}
+                  />
                 </button>
               )}
             </>
