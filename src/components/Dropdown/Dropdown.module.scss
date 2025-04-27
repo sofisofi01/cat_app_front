@@ -139,9 +139,6 @@
   cursor: pointer;
 }
 
-.dropdownContainer {
-}
-
 @include breakpoints(sm) {
   .dropdownWrapper {
     flex-direction: row;

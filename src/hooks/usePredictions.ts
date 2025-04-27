@@ -49,6 +49,33 @@ export const usePredictions = (initialVisibleCount = 3) => {
     [],
   );
 
+  const refetchLikes = useCallback(async (predictionId: number) => {
+    try {
+      const updatedPrediction = await PredictionService.getLikes(predictionId);
+
+      setAllPredictions((prev) =>
+        prev.map((pred) =>
+          pred.id === predictionId
+            ? { ...pred, likes: updatedPrediction.likes }
+            : pred,
+        ),
+      );
+
+      setVisiblePredictions((prev) =>
+        prev.map((pred) =>
+          pred.id === predictionId
+            ? { ...pred, likes: updatedPrediction.likes }
+            : pred,
+        ),
+      );
+    } catch (error) {
+      console.error(
+        `Не удалось обновить лайки для предсказания ${predictionId}:`,
+        error,
+      );
+    }
+  }, []);
+
   useEffect(() => {
     fetchAllPredictions();
   }, [fetchAllPredictions]);
@@ -62,5 +89,6 @@ export const usePredictions = (initialVisibleCount = 3) => {
     visibleCount,
     updatePredictionLikes,
     refetch: fetchAllPredictions,
+    refetchLikes,
   };
 };

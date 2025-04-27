@@ -26,7 +26,7 @@ export function ThoughtsPage({ usernameError, textError }: ThoughtsProps) {
     loadMore,
     visibleCount,
     updatePredictionLikes,
-    refetch,
+    refetchLikes,
   } = usePredictions(3);
 
   const [openCommentsId, setOpenCommentsId] = useState<number | null>(null);
@@ -45,7 +45,7 @@ export function ThoughtsPage({ usernameError, textError }: ThoughtsProps) {
 
     try {
       await likePrediction(predictionId);
-      await refetch();
+      await refetchLikes(predictionId);
     } catch (error) {
       updatePredictionLikes(predictionId, currentLikes);
       console.error("Ошибка при обновлении лайка:", error);
