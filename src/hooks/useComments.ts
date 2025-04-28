@@ -29,6 +29,10 @@ export const useComments = (predictionId: number | null) => {
 
   const addComment = async (text: string, username: string) => {
     if (!predictionId) return;
+    if (!text.trim()) {
+      return;
+    }
+
     setIsLoading(true);
     setError(null);
 
