@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 import { Prediction } from "@/services/api/types";
 import { PredictionService } from "@/services/api/prediction";
+import { CommentService } from "@/services/api/comment";
 
 export const usePredictions = (initialVisibleCount = 3) => {
   const [allPredictions, setAllPredictions] = useState<Prediction[]>([]);
@@ -49,6 +50,75 @@ export const usePredictions = (initialVisibleCount = 3) => {
     [],
   );
 
+  const refetchLikes = useCallback(async (predictionId: number) => {
+    try {
+      const updatedPrediction = await PredictionService.getLikes(predictionId);
+
+      setAllPredictions((prev) =>
+        prev.map((pred) =>
+          pred.id === predictionId
+            ? { ...pred, likes: updatedPrediction.likes }
+            : pred,
+        ),
+      );
+
+      setVisiblePredictions((prev) =>
+        prev.map((pred) =>
+          pred.id === predictionId
+            ? { ...pred, likes: updatedPrediction.likes }
+            : pred,
+        ),
+      );
+    } catch (error) {
+      console.error(
+        `Не удалось обновить лайки для предсказания ${predictionId}:`,
+        error,
+      );
+    }
+  }, []);
+
+  const updatePredictionComments = useCallback(
+    (predictionId: number, newComments: Comment[]) => {
+      setAllPredictions((prev) =>
+        prev.map((pred) =>
+          pred.id === predictionId ? { ...pred, comments: newComments } : pred,
+        ),
+      );
+      setVisiblePredictions((prev) =>
+        prev.map((pred) =>
+          pred.id === predictionId ? { ...pred, comments: newComments } : pred,
+        ),
+      );
+    },
+    [],
+  );
+
+  const refetchComments = useCallback(async (predictionId: number) => {
+    try {
+      const updatedPrediction =
+        await CommentService.getByPrediction(predictionId);
+      setAllPredictions((prev) =>
+        prev.map((pred) =>
+          pred.id === predictionId
+            ? { ...pred, comments: updatedPrediction.comments }
+            : pred,
+        ),
+      );
+      setVisiblePredictions((prev) =>
+        prev.map((pred) =>
+          pred.id === predictionId
+            ? { ...pred, comments: updatedPrediction.comments }
+            : pred,
+        ),
+      );
+    } catch (error) {
+      console.error(
+        `Не удалось обновить комментарии для предсказания ${predictionId}:`,
+        error,
+      );
+    }
+  }, []);
+
   useEffect(() => {
     fetchAllPredictions();
   }, [fetchAllPredictions]);
@@ -62,5 +132,8 @@ export const usePredictions = (initialVisibleCount = 3) => {
     visibleCount,
     updatePredictionLikes,
     refetch: fetchAllPredictions,
+    refetchLikes,
+    updatePredictionComments,
+    refetchComments,
   };
 };

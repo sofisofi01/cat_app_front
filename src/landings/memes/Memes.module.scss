@@ -1,93 +1,27 @@
 @import "../../styles/mixins/breakpoints.scss";
 @import "../../styles/variables/fonts.scss";
 @import "../../styles/variables/colors.scss";
-@keyframes float1 {
-  0% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-10px);
-  }
-  100% {
-    transform: translateY(0);
-  }
-}
 
-@keyframes float2 {
-  0% {
-    transform: translateX(0);
-  }
-  50% {
-    transform: translateX(15px);
-  }
-  100% {
-    transform: translateX(0);
-  }
-}
-
-@keyframes float3 {
-  0% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(20px);
-  }
+@keyframes gentle-drift {
+  0%,
   100% {
     transform: translateY(0);
   }
-}
-
-@keyframes float4 {
-  0% {
-    transform: translate(-5px, 0);
-  }
   50% {
-    transform: translate(5px, 0);
-  }
-  100% {
-    transform: translate(-5px, 0);
-  }
-}
-
-@keyframes float5 {
-  0% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-15px);
-  }
-  100% {
-    transform: translateY(0);
-  }
-}
-
-@keyframes float6 {
-  0% {
-    transform: translate(0, 0);
-  }
-  25% {
-    transform: translate(5px, -5px);
-  }
-  50% {
-    transform: translate(0, -10px);
-  }
-  75% {
-    transform: translate(-5px, -5px);
-  }
-  100% {
-    transform: translate(0, 0);
+    transform: translateY(-20px);
   }
 }
 
 .wrapper {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: start;
   min-height: 100vh;
   position: relative;
   width: 100%;
-  margin: 0 auto;
+  margin: 20px auto 0;
   box-sizing: border-box;
+  max-width: 1440px;
 }
 
 .uploadSection {
@@ -126,12 +60,6 @@
   object-fit: cover;
 }
 
-.content {
-  width: 100%;
-  max-width: 1400px;
-  padding: 0 20px;
-  margin: 0 auto;
-}
 .pageTitle {
   font-size: 27px;
   color: $color-light-blue;
@@ -141,14 +69,23 @@
 
 .memeGallery {
   display: grid;
-  justify-content: center;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 25px;
+  grid-template-columns: 1fr 1fr;
+  gap: 5px;
   width: 100%;
-  max-width: 1400px;
   margin: 0 auto;
-  padding: 0 20px;
   margin-top: 50px;
+}
+
+.memePopupContent {
+  width: 80%;
+  object-fit: contain;
+  border-radius: 0;
+}
+
+.popupImage {
+  width: 100%;
+  object-fit: contain;
+  border-radius: 0;
 }
 
 .showMoreContainer {
@@ -157,26 +94,13 @@
   margin-top: 20px;
 }
 
-.loadMoreButton {
-  background: transparent;
-  border: none;
-  transition: filter 0.3s ease;
-  display: block;
-  margin: 40px auto 20px;
-  cursor: pointer;
-}
-
-.loadMoreButton:hover {
-  filter: brightness(0.2);
-}
-
-
 .image {
   width: 100%;
-  height: 200px;
+  height: 150px;
   object-fit: cover;
-  border-radius: 4px;
+  border-radius: 20px;
   transition: transform 0.2s ease;
+  cursor: pointer;
 
   &:hover {
     transform: scale(1.1);
@@ -184,60 +108,90 @@
 }
 
 .filterSection {
-  width: 100%;
   display: flex;
+  width: 100%;
   flex-direction: row;
   gap: 10px;
   margin: 20px 0;
   font-family: $font-family-secondary;
   flex-wrap: wrap;
   align-items: center;
+  align-self: start;
 }
 
+.footer {
+  align-self: center;
+}
 
 .book {
-  position: absolute;
-  display: block;
-  width: 160px;
-  height: auto;
+  display: none;
 }
 
-.book:nth-of-type(1) {
-  animation: float1 3s ease-in-out infinite;
-  top: 200px;
-  left: 2%;
-}
-.book:nth-of-type(2) {
-  animation: float2 4s ease-in-out infinite;
-  top: 600px;
-  left: 5%;
-}
-.book:nth-of-type(3) {
-  animation: float3 5s ease-in-out infinite;
-  top: 880px;
-  left: 6%;
-}
-.book:nth-of-type(4) {
-  animation: float4 3.5s ease-in-out infinite;
-  top: 150px;
-  right: 2%;
-  left: auto;
-}
-.book:nth-of-type(5) {
-  animation: float5 4.5s ease-in-out infinite;
-  top: 400px;
-  right: 5%;
-  left: auto;
-}
-.book:nth-of-type(6) {
-  animation: float6 6s ease-in-out infinite;
-  top: 800px;
-  right: 8%;
-  left: auto;
+@include breakpoints(sm) {
+  .memeGallery {
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+  }
+
+  .image {
+    height: 200px;
+  }
 }
 
-@include breakpoints-max(xxl) {
+@include breakpoints(xl) {
+  .memeGallery {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 20px;
+  }
+
+  .image {
+    height: 200px;
+  }
+}
+
+@include breakpoints(xxl) {
+  .image {
+    height: 200px;
+  }
+
+  .memePopupContent {
+    width: 100%;
+    object-fit: contain;
+    border-radius: 0;
+    position: relative;
+  }
+
+  .popupImage {
+    width: 100%;
+    object-fit: contain;
+    border-radius: 0;
+  }
+
   .book {
-    display: none;
+    display: block;
+    position: fixed;
+    animation: gentle-drift 2s ease-in-out infinite;
+    top: 100px;
+    left: 6%;
+
+    &:nth-of-type(2) {
+      top: 900px;
+      left: 90%;
+    }
+
+    &:nth-of-type(3) {
+      top: 400px;
+      left: 90%;
+    }
+
+    &:nth-of-type(4) {
+      top: 900px;
+      left: 3%;
+    }
+
+    &:nth-of-type(5) {
+      top: 500px;
+      left: 3%;
+    }
   }
 }

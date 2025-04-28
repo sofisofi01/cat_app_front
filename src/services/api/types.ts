@@ -20,7 +20,7 @@ export type PredictionApiResponse = {
 };
 
 export type ImageApiResponse = {
-  images: Prediction[];
+  images: ImageType[];
   total_pages: number;
   current_page: number;
 };
@@ -33,9 +33,9 @@ export type Comment = {
   created_at: string;
 };
 
-export type Image = {
+export type ImageType = {
   tag?: string;
   id: number;
-  url: string;
+  image: string;
   description?: string;
 };

@@ -7,35 +7,39 @@ export const useComments = (predictionId: number | null) => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  useEffect(() => {
+  const fetchComments = async () => {
     if (!predictionId) return;
+    setIsLoading(true);
+    setError(null);
 
-    const fetchComments = async () => {
-      setIsLoading(true);
-      setError(null);
+    try {
+      const response = await CommentService.getByPrediction(predictionId);
+      setComments(response.comments || []);
+    } catch (err) {
+      console.error("Failed to fetch comments:", err);
+      setError("Не удалось загрузить комментарии");
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
-      try {
-        const response = await CommentService.getByPrediction(predictionId);
-        setComments(response.comments || []);
-      } catch (err) {
-        console.error("Failed to fetch comments:", err);
-        setError("Не удалось загрузить комментарии");
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
+  useEffect(() => {
     fetchComments();
   }, [predictionId]);
 
   const addComment = async (text: string, username: string) => {
     if (!predictionId) return;
+    if (!text.trim()) {
+      return;
+    }
+
+    setIsLoading(true);
+    setError(null);
+
     try {
-      setIsLoading(true);
       const newComment = await CommentService.add(predictionId, text, username);
-      window.location.reload();
-      await new Promise((resolve) => setTimeout(resolve, 2000));
       setComments((prev) => [newComment, ...prev]);
+      await fetchComments();
     } catch (err) {
       console.error("Failed to add comment:", err);
       setError("Не удалось добавить комментарий");

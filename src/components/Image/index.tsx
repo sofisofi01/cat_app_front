@@ -1,4 +1,4 @@
-import { ImageProps } from './types';
+import { ImageProps } from "./types";
 
 export function Image(props: ImageProps) {
   return (
@@ -13,7 +13,6 @@ export function Image(props: ImageProps) {
       title={props.title}
       loading={props.loading}
       className={props.className}
-      onClick={props.onClick}
     />
   );
 }

@@ -1,132 +1,152 @@
 @import "../../styles/mixins/breakpoints.scss";
 @import "../../styles/variables/fonts.scss";
 @import "../../styles/variables/colors.scss";
- 
+
 .filterSection {
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    gap: 10px;
-    margin: 20px 0;
-    font-family: $font-family-secondary;
-    flex-wrap: wrap;
-    align-items: center; 
-  }
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  margin: 20px 0;
+  font-family: $font-family-secondary;
+  flex-wrap: wrap;
+  align-items: center;
+}
 
-  .selectInput {
-    padding: 8px 12px;
-    font-size: 16px;
-    border-radius: 20px;
-    border: 1.5px solid $color-blue;
-    background-color: $color-white-blue;
-    cursor: pointer;
-    transition: border-color 0.2s;
-    color: $color-blue;
-    width: fit-content;
-    min-width: 100px;
-  
-    &:focus {
-      outline: none;
-      border-color: $color-blue;
-    }
-  }
+.selectInput {
+  padding: 8px 12px;
+  font-size: 16px;
+  border-radius: 20px;
+  border: 1.5px solid $color-blue;
+  background-color: $color-white-blue;
+  cursor: pointer;
+  transition: border-color 0.2s;
+  color: $color-blue;
+  width: fit-content;
+  min-width: 100px;
 
-  .selectInput option {
-    background-color: $color-white-blue;
-    color: $color-blue;
-    font-size: 14px;
-    padding: 8px 12px;
-    border-radius: 20px;
-    border: none;
-    appearance: none;
-    -webkit-appearance: none;
-  }
-  
-  .selectInput:focus-visible {
+  &:focus {
     outline: none;
+    border-color: $color-blue;
   }
-  
-  .dropdownContainer {
-    position: relative;
+}
+
+.selectInput option {
+  background-color: $color-white-blue;
+  color: $color-blue;
+  font-size: 14px;
+  padding: 8px 12px;
+  border-radius: 20px;
+  border: none;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+.selectInput:focus-visible {
+  outline: none;
+}
+
+.dropdownContainer {
+  position: relative;
+  align-self: start;
+}
+
+.dropdownMenu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background-color: $color-white-blue;
+  border: 1px solid $color-border;
+  border-radius: 20px;
+  box-shadow: 0 2px 5px $color-dropdown-shadow;
+  z-index: 10;
+  color: $color-blue;
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  overflow: hidden;
+}
+
+.dropdownItem {
+  padding: 8px 12px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+
+  &:hover {
+    background-color: $color-hover;
   }
-  
-  .dropdownMenu {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    width: 100%;
-    background-color: $color-white-blue;
-    border: 1px solid $color-border;
-    border-radius: 20px;
-    box-shadow: 0 2px 5px $color-dropdown-shadow;
-    z-index: 10;
-    color: $color-blue;
-    margin-top: 10px;
-    display: flex;
-    flex-direction: column;
-    gap: 5px;  
-    overflow: hidden;
+
+  &.active {
+    background-color: $color-active;
+    color: $color-text-item;
   }
-  
-  .dropdownItem {
-    padding: 8px 12px;
-    cursor: pointer;
-    transition: background-color 0.2s;
-  
-    &:hover {
-      background-color: $color-hover;
-    }
-  
-    &.active {
-      background-color: $color-active;
-      color: $color-text-item;
-    }
-  
-    &:first-child {
-      border-top-left-radius: 20px;
-      border-top-right-radius: 20px;
-      padding-top: 12px;
-    }
-  
-    &:last-child {
-      border-bottom-left-radius: 20px;
-      border-bottom-right-radius: 20px;
-      padding-bottom: 12px;
-    }
+
+  &:first-child {
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    padding-top: 12px;
   }
-  
+
+  &:last-child {
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    padding-bottom: 12px;
+  }
+}
+
 .selectedTagsContainer {
-    display: flex;
-    gap: 10px;
-    justify-content: flex-end;
-    align-items: center;
-    width: 100%;
-    margin-top: 0;
-    margin-left: 20px; 
-  }
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: flex-start;
+  align-items: start;
+  width: 100%;
+  margin-top: 10px;
+  margin-left: 0;
+  max-height: none;
+  overflow: visible;
+  padding: 5px 0;
+  flex-direction: column;
+}
+
+.dropdownWrapper {
+  display: flex;
+  align-items: center;
+  margin-right: 50px;
+  flex-direction: column;
+}
+
+.selectedTag {
+  background-color: $color-white-blue;
+  border-radius: 20px;
+  padding: 5px 10px;
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  color: $color-blue;
+  border: 1.5px solid $color-blue;
+  white-space: nowrap;
+}
+
+.removeTagButton {
+  background: none;
+  border: none;
+  color: $color-blue;
+  font-size: 14px;
+  margin-left: 8px;
+  cursor: pointer;
+}
+
+@include breakpoints(sm) {
   .dropdownWrapper {
-    display: flex;
-    align-items: center;
-    margin-right: 50px;  
+    flex-direction: row;
   }
-  .selectedTag {
-    background-color: $color-white-blue;
-    border-radius: 20px;
-    padding: 5px 10px;
-    display: flex;
-    align-items: center;
-    font-size: 14px;
-    color: $color-blue;
-    border: 1.5px solid $color-blue;
-    white-space: nowrap; 
+
+  .selectedTagsContainer {
+    flex-direction: row;
+    margin-top: 0;
+    margin-left: 20px;
   }
-  
-  .removeTagButton {
-    background: none;
-    border: none;
-    color: $color-blue;
-    font-size: 14px;
-    margin-left: 8px;
-    cursor: pointer;
-  }
-  
+}

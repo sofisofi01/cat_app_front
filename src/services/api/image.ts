@@ -1,16 +1,16 @@
 import apiClient from "./client";
-import { Image, ImageApiResponse } from "./types";
+import { ImageType, ImageApiResponse } from "./types";
 
 export const ImageService = {
   getAll: async (): Promise<ImageApiResponse> => {
     return apiClient.get("/images/");
   },
 
-  getById: async (imageId: number): Promise<Image> => {
+  getById: async (imageId: number): Promise<ImageType> => {
     return apiClient.get(`/images/${imageId}/`);
   },
 
-  upload: async (file: File): Promise<Image> => {
+  upload: async (file: File): Promise<ImageType> => {
     const formData = new FormData();
     formData.append("file", file);
     return apiClient.post("/upload-image/", formData, {

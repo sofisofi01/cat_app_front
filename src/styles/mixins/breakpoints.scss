@@ -10,13 +10,3 @@
     }
   }
 }
-
-@mixin breakpoints-max($name) {
-  $screen: map.get($layout-breakpoints, $name);
-
-  @if $screen {
-    @media (max-width: ($screen - 1)) {
-      @content;
-    }
-  }
-}

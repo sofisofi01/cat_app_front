@@ -2,7 +2,21 @@ import { useState } from "react";
 import styles from "./Dropdown.module.scss";
 import { DropdownProps } from "./types";
 
-export const Dropdown = ({ allTags, selectedTags, toggleTag }: DropdownProps) => {
+const ALL_TAGS = [
+  "philosophical",
+  "funny",
+  "inspirational",
+  "domestic",
+  "relax",
+  "dreams",
+  "trivial",
+  "nostalgia",
+  "mysterious",
+  "fate",
+  "everyday",
+] as const;
+
+export const Dropdown = ({ selectedTags, toggleTag }: DropdownProps) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -14,10 +28,10 @@ export const Dropdown = ({ allTags, selectedTags, toggleTag }: DropdownProps) =>
           readOnly
           onClick={() => setIsOpen(!isOpen)}
         />
-        
+
         {isOpen && (
           <div className={styles.dropdownMenu}>
-            {allTags.map((tag) => (
+            {ALL_TAGS.map((tag) => (
               <div
                 key={tag}
                 className={`${styles.dropdownItem} ${

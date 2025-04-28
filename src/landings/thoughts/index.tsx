@@ -16,24 +16,25 @@ import book2 from "./assets/book2.svg";
 import book3 from "./assets/book3.svg";
 import book4 from "./assets/book4.svg";
 import book5 from "./assets/book5.svg";
+import { Dropdown } from "@/components/Dropdown";
 
 export function ThoughtsPage({ usernameError, textError }: ThoughtsProps) {
   const {
     allPredictions,
-    visiblePredictions,
     isLoading,
     error,
     loadMore,
     visibleCount,
     updatePredictionLikes,
-    refetch,
+    refetchLikes,
   } = usePredictions(3);
 
   const [openCommentsId, setOpenCommentsId] = useState<number | null>(null);
   const { likePrediction, isLiked, isLoading: isLikeLoading } = useLikes();
+  const [selectedTags, setSelectedTags] = useState<string[]>([]);
 
   const handleLike = async (predictionId: number) => {
-    const prediction = visiblePredictions.find((p) => p.id === predictionId);
+    const prediction = allPredictions.find((p) => p.id === predictionId);
     if (!prediction || isLikeLoading) return;
 
     const currentLikes = prediction.likes || 0;
@@ -45,12 +46,30 @@ export function ThoughtsPage({ usernameError, textError }: ThoughtsProps) {
 
     try {
       await likePrediction(predictionId);
-      await refetch();
+      await refetchLikes(predictionId);
     } catch (error) {
       updatePredictionLikes(predictionId, currentLikes);
       console.error("Ошибка при обновлении лайка:", error);
     }
   };
+
+  const toggleTag = (tag: string) => {
+    setSelectedTags((prevSelected) =>
+      prevSelected.includes(tag)
+        ? prevSelected.filter((t) => t !== tag)
+        : [...prevSelected, tag],
+    );
+  };
+
+  const filteredPredictions =
+    selectedTags.length === 0
+      ? allPredictions
+      : allPredictions.filter(
+          (prediction) =>
+            prediction.tag && selectedTags.includes(prediction.tag),
+        );
+
+  const visibleFilteredPredictions = filteredPredictions.slice(0, visibleCount);
 
   return (
     <div className={styles.wrapper}>
@@ -60,10 +79,12 @@ export function ThoughtsPage({ usernameError, textError }: ThoughtsProps) {
         <div className={styles.error}>{error}</div>
       ) : (
         <div className={styles.predictionsList}>
-          {visiblePredictions.length > 0 ? (
+          <Dropdown selectedTags={selectedTags} toggleTag={toggleTag} />
+
+          {visibleFilteredPredictions.length > 0 ? (
             <>
               <ul className={styles.list}>
-                {visiblePredictions.map((prediction) => (
+                {visibleFilteredPredictions.map((prediction) => (
                   <li key={prediction.id} className={styles.item}>
                     {prediction.avatar && (
                       <Image
@@ -139,7 +160,7 @@ export function ThoughtsPage({ usernameError, textError }: ThoughtsProps) {
                 ))}
               </ul>
 
-              {visibleCount < allPredictions.length && (
+              {visibleCount < filteredPredictions.length && (
                 <button
                   onClick={loadMore}
                   className={styles.loadMoreButton}
@@ -160,6 +181,7 @@ export function ThoughtsPage({ usernameError, textError }: ThoughtsProps) {
           )}
         </div>
       )}
+
       <Image className={styles.book} {...book1} />
       <Image className={styles.book} {...book2} />
       <Image className={styles.book} {...book3} />
