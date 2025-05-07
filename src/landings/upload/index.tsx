@@ -22,7 +22,6 @@ export function UploadPage() {
       <Image className={styles.book} {...book2} />
       <Image className={styles.book} {...book3} />
       <div className={styles.transparentBlock}>
-        {/* Левая часть */}
         <div className={styles.leftBlock}>
           <Image
             src={star.src}
@@ -36,7 +35,6 @@ export function UploadPage() {
           />
         </div>
 
-        {/* Правая часть с полями ввода */}
         <div className={styles.rightBlock}>
           <div className={styles.tabs}>
             <button
@@ -53,7 +51,6 @@ export function UploadPage() {
             </button>
           </div>
 
-          {/* 👉 Вот здесь */}
           {activeTab === "meme" ? <FormMemes /> : <FormThoughts />}
 
           <div className={styles.blockItem}>
