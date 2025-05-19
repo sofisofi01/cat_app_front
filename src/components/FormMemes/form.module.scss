@@ -107,6 +107,10 @@
   .submitButtonContainer {
     justify-content: flex-end;
   }
+
+  .blockItem p {
+    font-size: 18px;
+  }
 }
 
 @include breakpoints(lg) {

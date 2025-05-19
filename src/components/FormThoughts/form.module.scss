@@ -5,7 +5,7 @@
 .leftBlock {
   padding: 30px;
   padding-top: 0;
-  overflow: hidden;
+  overflow: auto;
   grid-area: left;
   position: relative;
   display: flex;
@@ -106,6 +106,10 @@
 @include breakpoints(md) {
   .submitButtonContainer {
     justify-content: flex-end;
+  }
+
+  .blockItem p {
+    font-size: 18px;
   }
 }
 

@@ -14,6 +14,7 @@
 
 .wrapper {
   min-height: 100vh;
+  height: 1300px;
   display: flex;
   flex-direction: column;
   position: relative;
@@ -30,19 +31,29 @@
   padding: 16px;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
   display: grid;
-  min-height: auto;
   align-items: stretch;
-  max-width: 90%;
-  flex-wrap: wrap;
+  max-width: 100%;
+
+  grid-template-columns: 1fr;
+  grid-template-areas:
+    "left"
+    "rightTop"
+    "rightBottom";
+}
+
+.transparentBlock * {
+  width: 100%;
 }
 
 .rightTopBlock {
+  width: 100%;
   grid-area: rightTop;
-  padding: 15px;
+  padding: 15px 12%;
 }
 
 .tab,
 .tabActive {
+  width: auto;
   padding: 5px 20px;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -60,14 +71,7 @@
 .tabs {
   display: flex;
   flex-wrap: wrap;
-  gap: 50px;
   justify-content: center;
-
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  width: 100%;
-  padding: 0 10px;
 }
 
 .book {
@@ -76,10 +80,38 @@
 
 @include breakpoints(xs) {
   .wrapper {
+    height: 1450px;
+  }
+
+  .transparentBlock {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "left"
+      "rightTop"
+      "rightBottom";
+  }
+
+  .transparentBlock * {
+    width: auto;
+  }
+
+  .tabs {
+    justify-content: space-between;
+  }
+
+  .tab,
+  .tabActive {
+    font-size: 18px;
+  }
+}
+
+@include breakpoints(sm) {
+  .wrapper {
     height: 1400px;
   }
 
   .transparentBlock {
+    width: 70%;
     grid-template-columns: 1fr;
     grid-template-areas:
       "left"
@@ -91,42 +123,24 @@
   .tabActive {
     font-size: 20px;
   }
-
-  .tabs {
-    gap: 5px;
-  }
-}
-
-@include breakpoints(sm) {
-  .wrapper {
-    height: 1400px;
-    justify-content: end;
-  }
-
-  .transparentBlock {
-    grid-template-columns: 1fr;
-    grid-template-areas:
-      "left"
-      "rightTop"
-      "rightBottom";
-  }
-
-  .tabs {
-    gap: 50px;
-  }
 }
 
 @include breakpoints(md) {
   .wrapper {
-    height: 650px;
+    height: 750px;
   }
 
   .transparentBlock {
-    max-width: 90%;
+    width: 90%;
     grid-template-columns: 1fr 1fr;
     grid-template-areas:
       "left rightTop"
       "left rightBottom";
+  }
+
+  .tab,
+  .tabActive {
+    font-size: 22px;
   }
 }
 
