@@ -1,0 +1,160 @@
+@import "../../styles/variables/fonts.scss";
+@import "../../styles/variables/colors.scss";
+@import "../../styles/mixins/breakpoints.scss";
+
+.leftBlock {
+  padding: 30px;
+  padding-top: 0;
+  overflow: auto;
+  grid-area: left;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 20px;
+  width: 100%;
+}
+
+.starImage,
+.insertImage {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+.blockItem {
+  text-align: justify;
+  text-justify: inter-word;
+  padding: 10px;
+}
+
+.blockItem p {
+  margin: 0;
+  color: $color-blue;
+  font-family: $font-family-secondary;
+  line-height: 1.5;
+  font-size: 14px;
+}
+
+.rightBottomBlock {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  grid-area: rightBottom;
+  padding: 15px;
+  gap: 25px;
+  width: 100%;
+}
+
+.submitButtonContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.submitButton {
+  padding: 12px 24px;
+  background-color: $color-blue;
+  color: white;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.2s ease;
+}
+
+.submitButton:hover {
+  background-color: darken($color-blue, 10%);
+}
+
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.inputField {
+  padding: 12px 15px;
+  border-radius: 20px;
+  font-size: 16px;
+  font-family: $font-family-secondary;
+  background-color: $color-blue-tab;
+  border: none;
+  color: $color-light-blue;
+}
+
+.inputField:focus {
+  outline: none;
+}
+
+.inputField::placeholder {
+  color: $color-light-blue;
+}
+
+@include breakpoints(xs) {
+  .submitButtonContainer {
+    justify-content: center;
+  }
+
+  .inputField {
+    font-size: 15px;
+  }
+}
+
+@include breakpoints(md) {
+  .submitButtonContainer {
+    justify-content: flex-end;
+  }
+
+  .blockItem p {
+    font-size: 18px;
+  }
+}
+
+@include breakpoints(lg) {
+  .inputField {
+    font-size: 20px;
+  }
+
+  .blockItem p {
+    font-size: 20px;
+  }
+
+  .submitButton {
+    font-size: 23px;
+  }
+}
+
+@include breakpoints(xl) {
+  .blockItem p {
+    font-size: 18px;
+  }
+
+  .inputField {
+    font-size: 18px;
+  }
+
+  .submitButton {
+    font-size: 20px;
+  }
+}
+
+@include breakpoints(xxl) {
+  .submitButtonContainer {
+    justify-content: flex-end;
+  }
+
+  .inputField {
+    font-size: 26px;
+  }
+
+  .blockItem p {
+    font-size: 26px;
+  }
+
+  .submitButton {
+    font-size: 29px;
+  }
+}
