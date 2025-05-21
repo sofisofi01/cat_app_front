@@ -12,7 +12,7 @@ export function Header({ menu }: HeaderProps) {
             <Image className={styles.image} {...logo}/>
         </Link>
         <nav className={styles.nav}>
-        {menu.map((item, index) => (
+        {menu.map((item) => (
           <div className={styles.navItem} key={item.id}>
             <Link className={styles.link} href={item.href}>{item.text}</Link>
           </div>
