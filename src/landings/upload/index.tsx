@@ -8,9 +8,9 @@ import styles from "./upload.module.scss";
 import book1 from "./assets/book1.svg";
 import book2 from "./assets/book2.svg";
 import book3 from "./assets/book3.svg";
-import { data } from "./const";
+import { UploadProps } from "./types";
 
-export function UploadPage() {
+export function UploadPage({ meme, thought }: UploadProps) {
   const [activeTab, setActiveTab] = useState<"meme" | "thought">("meme");
 
   return (
@@ -39,9 +39,9 @@ export function UploadPage() {
         </div>
 
         {activeTab === "meme" ? (
-          <FormMemes {...data.meme} />
+          <FormMemes {...meme} />
         ) : (
-          <FormThoughts {...data.thought} />
+          <FormThoughts {...thought} />
         )}
       </div>
       <ExtraHeader page="upload" />

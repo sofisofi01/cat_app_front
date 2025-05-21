@@ -1,11 +1,11 @@
 "use client";
-import { UploadPageProps } from "./types";
+import { FormMemesProps } from "./types";
 import styles from "./form.module.scss";
 import { Image } from "@/components/Image";
 import { ChangeEvent, FormEvent, useRef, useState } from "react";
 import { ImageService } from "@/services/api";
 
-export function FormMemes({ text, image: initialImage }: UploadPageProps) {
+export function FormMemes({ text, image: initialImage }: FormMemesProps) {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [previewUrl, setPreviewUrl] = useState(initialImage?.src || "");
   const [name, setName] = useState("");

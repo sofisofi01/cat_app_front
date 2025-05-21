@@ -1,11 +1,11 @@
 "use client";
-import { UploadPageProps } from "./types";
+import { FormThoughtsProps } from "./types";
 import styles from "./form.module.scss";
 import { Image } from "@/components/Image";
 import { ChangeEvent, FormEvent, useRef, useState } from "react";
 import { PredictionService } from "@/services/api/prediction";
 
-export function FormThoughts({ text, image }: UploadPageProps) {
+export function FormThoughts({ text, image }: FormThoughtsProps) {
   const [selectedAvatar, setSelectedAvatar] = useState<File | null>(null);
   const [avatarPreviewUrl, setAvatarPreviewUrl] = useState(image.src);
   const [quote, setQuote] = useState("");
