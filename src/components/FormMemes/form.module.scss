@@ -16,6 +16,11 @@
   width: 100%;
 }
 
+.successMessage {
+  color: $color-blue;
+  font-weight: bold;
+}
+
 .starImage,
 .insertImage {
   width: 100%;
@@ -51,7 +56,9 @@
 .submitButtonContainer {
   display: flex;
   justify-content: center;
+  gap: 20px;
   align-items: center;
+  flex-direction: column;
 }
 
 .submitButton {
@@ -95,6 +102,7 @@
 
 @include breakpoints(xs) {
   .submitButtonContainer {
+    flex-direction: row;
     justify-content: center;
   }
 
@@ -104,6 +112,16 @@
 }
 
 @include breakpoints(md) {
+  .formContainer {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .leftBlock {
+    width: 50%;
+    max-width: 500px;
+  }
+
   .submitButtonContainer {
     justify-content: flex-end;
   }
@@ -142,6 +160,11 @@
 }
 
 @include breakpoints(xxl) {
+  .leftBlock {
+    width: 50%;
+    max-width: 800px;
+  }
+
   .submitButtonContainer {
     justify-content: flex-end;
   }

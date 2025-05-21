@@ -30,19 +30,8 @@
   border-radius: 16px;
   padding: 16px;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
-  display: grid;
   align-items: stretch;
   max-width: 100%;
-
-  grid-template-columns: 1fr;
-  grid-template-areas:
-    "left"
-    "rightTop"
-    "rightBottom";
-}
-
-.transparentBlock * {
-  width: 100%;
 }
 
 .rightTopBlock {
@@ -91,10 +80,6 @@
       "rightBottom";
   }
 
-  .transparentBlock * {
-    width: auto;
-  }
-
   .tabs {
     justify-content: space-between;
   }
@@ -131,11 +116,9 @@
   }
 
   .transparentBlock {
-    width: 90%;
-    grid-template-columns: 1fr 1fr;
-    grid-template-areas:
-      "left rightTop"
-      "left rightBottom";
+    max-width: 70%;
+    display: flex;
+    flex-direction: column;
   }
 
   .tab,
@@ -159,11 +142,6 @@
   .wrapper {
     height: 500px;
   }
-
-  .transparentBlock {
-    max-width: 70%;
-  }
-
   .tab,
   .tabActive {
     font-size: 23px;

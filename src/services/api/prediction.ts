@@ -7,11 +7,15 @@ export const PredictionService = {
   },
 
   getAll: async (): Promise<PredictionApiResponse> => {
-    return apiClient.get("/all-predictions/");
+    return apiClient.get("/all-predictions?sort=likes");
   },
 
-  create: async (data: Omit<Prediction, "id">): Promise<Prediction> => {
-    return apiClient.post("/add-prediction/", data);
+  create: async (formData: FormData) => {
+    return apiClient.post("/add-prediction/", formData, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
   },
 
   like: async (predictionId: number): Promise<Prediction> => {

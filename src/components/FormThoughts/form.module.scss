@@ -2,6 +2,14 @@
 @import "../../styles/variables/colors.scss";
 @import "../../styles/mixins/breakpoints.scss";
 
+.buttonGroup {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
+  align-items: center;
+}
+
 .leftBlock {
   padding: 30px;
   padding-top: 0;
@@ -14,6 +22,12 @@
   justify-content: flex-start;
   gap: 20px;
   width: 100%;
+  min-height: max-content;
+}
+
+.successMessage {
+  color: $color-blue;
+  font-weight: bold;
 }
 
 .starImage,
@@ -94,6 +108,9 @@
 }
 
 @include breakpoints(xs) {
+  .buttonGroup {
+    flex-direction: row;
+  }
   .submitButtonContainer {
     justify-content: center;
   }
@@ -104,6 +121,17 @@
 }
 
 @include breakpoints(md) {
+  .formContainer {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .avatarImage {
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+  }
+
   .submitButtonContainer {
     justify-content: flex-end;
   }
@@ -128,6 +156,11 @@
 }
 
 @include breakpoints(xl) {
+  .insertImage {
+    max-width: 500px;
+    height: auto;
+  }
+
   .blockItem p {
     font-size: 18px;
   }
@@ -142,6 +175,11 @@
 }
 
 @include breakpoints(xxl) {
+  .insertImage {
+    max-width: 700px;
+    height: auto;
+  }
+
   .submitButtonContainer {
     justify-content: flex-end;
   }
